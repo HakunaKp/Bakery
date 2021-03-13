@@ -1,0 +1,63 @@
+{
+  "name": "the-store",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@aws-amplify/ui-react": "^0.2.9",
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.2",
+    "@stripe/react-stripe-js": "^1.1.2",
+    "@stripe/stripe-js": "^1.7.0",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "animate.css": "^4.1.1",
+    "aws-amplify": "^3.0.18",
+    "bootstrap": "^4.5.0",
+    "classnames": "^2.2.6",
+    "firebase": "^8.2.9",
+    "framer-motion": "^2.1.2",
+    "lodash": "^4.17.15",
+    "node-sass": "^4.14.1",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-bootstrap": "^1.5.0",
+    "react-dom": "^16.13.1",
+    "react-elastic-carousel": "0.6.1",
+    "react-ga": "^2.3.5",
+    "react-icons": "^3.8.0",
+    "react-notifications-component": "^3.0.3",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "latest",
+    "react-stripe-elements": "^6.0.1",
+    "react-super-responsive-table": "^5.2.0",
+    "semantic-ui-react": "2.0.3",
+    "stripe": "^8.137.0",
+    "styled-components": "5.1.0",
+    "uuid": "^8.3.2",
+    "anix": "^0.3.3",
+    "jquery": "^3.2.1",
+    "particles-bg": "^2.3.12"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
