@@ -8,7 +8,6 @@ import Gallery from "./pages/Gallery";
 import Order from './pages/Order';
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
-import Admin from './pages/Admin';
 import history from './components/History';
 
 export default class Routes extends Component {  
@@ -20,7 +19,6 @@ export default class Routes extends Component {
           <Route path='/home' component={Home} />
           <Route path='/gallery' component={Gallery} />
           <Route path='/order/' component={Order} />
-          <Route path='/admin' component={Admin} />
           <Route path='/cart/:id' component={Cart} />
           <Route path='/checkout' component={Checkout} />
         </Switch>
