@@ -37,9 +37,6 @@ function CreateNotification(title_string, message_string) {
 
 const Order = () => {
 
-    const { products } = useContext(ProductContext);
-    const { addToCart } = useContext(CartContext);
-
     const rand = Math.random().toString(16).substr(2, 8); // 6de5ccda
     const [productDetails, setProductDetails] = useState({ id: rand, flavor: "", shape: "", tier: "", eggless: false, fondant: false, topper: false, 
         characters: false, description: "", price: "0.00" })
@@ -84,19 +81,6 @@ const Order = () => {
         )
     }
 
-    function SaveShape() {
-        if (document.getElementById("Circle") && document.getElementById("Rectangle") && document.getElementById("Heart")) {
-            var circle = Object.assign(document.getElementById("Circle"))
-            var rectangle = Object.assign(document.getElementById("Rectangle"))
-            var heart = Object.assign(document.getElementById("Heart"))
-
-            if (circle.className === "switch-toggle switch-toggle--on") setProductDetails({...productDetails, shape: "Circle"})
-            if (rectangle.className === "switch-toggle switch-toggle--on") setProductDetails({...productDetails, shape: "Rectangle"})
-            if (heart.className === "switch-toggle switch-toggle--on") setProductDetails({...productDetails, shape: "Heart"})
-        }
-        return
-    }
-
     function SaveForm(extrasReady){
         if (extrasReady && document.getElementById("description-box") && document.getElementsByClassName("tier-button")) {
             var tiers = document.getElementsByClassName("tier-button")
@@ -132,9 +116,20 @@ const Order = () => {
     }
 
     function getDescription(string) {
-        if (string === "Blueberry")
-        {
-            return "The most delicious berry"
+        if (string === "Blueberry") {
+            return "A rich inner-filling topped with blueberry flavored whipped topping and fresh blueberries"
+        } else if (string === "Strawberry") {
+            return "A rich inner-filling topped with strawberry flavored whipped topping and fresh strawberry slices"
+        } else if (string === "Mango") {
+            return "A rich inner-filling topped with mango flavored whipped topping and fresh mango slices"
+        } else if (string === "Pineapple") {
+            return "A rich inner-filling topped with pineapple flavored whipped topping and fresh mango slices"
+        } else if (string === "Black Forest") {
+            return "A rich inner-filling topped with whipped topping and maraschino cherries in syrup"
+        } else if (string === "Butterscotch") {
+            return "A rich inner-filling topped with butterscotch flavored whipped topping"
+        } else if (string === "Chocolate Ganache") {
+            return "A rich inner-filling coated with a delicious layer of melted chocolate"
         } else return
     }
 
@@ -149,7 +144,6 @@ const Order = () => {
                     />
                     <Accordion
                         title= {"Shape - " + productDetails.shape}
-                        content= {productDetails.shape}
                     />
                     <Accordion
                         title= {"Tier - " + productDetails.tier}
@@ -212,13 +206,8 @@ const Order = () => {
             if (!productDetails.flavor || !productDetails.shape || !productDetails.tier) return(
                 CreateNotification("Error", "Flavor, Shape and Tier are required")
             )
-
             await API.graphql(graphqlOperation(createProduct, { input: productDetails }))
-            const product = products.find((product) => {
-                return product.id === rand;
-            })
-            addToCart({ ...product, rand })
-            history.push('/cart')
+            history.push(`/cart/${productDetails.id}`)
         } catch (err) {
             console.log('error creating todo:', err)
         }

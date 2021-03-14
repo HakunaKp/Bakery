@@ -19,9 +19,9 @@ export default class Routes extends Component {
           <Route path='/' exact component={Home} />
           <Route path='/home' component={Home} />
           <Route path='/gallery' component={Gallery} />
-          <Route path='/order' component={Order} />
+          <Route path='/order/' component={Order} />
           <Route path='/admin' component={Admin} />
-          <Route path='/cart' component={Cart} />
+          <Route path='/cart/:id' component={Cart} />
           <Route path='/checkout' component={Checkout} />
         </Switch>
       </Router>
