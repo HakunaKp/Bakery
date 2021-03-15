@@ -203,11 +203,9 @@ const Order = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            if (!productDetails.flavor || !productDetails.shape || !productDetails.tier) return(
-                CreateNotification("Error", "Flavor, Shape and Tier are required")
-            )
+            if (!productDetails.flavor || !productDetails.shape || !productDetails.tier) return;
             await API.graphql(graphqlOperation(createProduct, { input: productDetails }))
-            history.push(`/cart/${productDetails.id}`)
+            history.push(`/pickup/${productDetails.id}`)
         } catch (err) {
             console.log('error creating todo:', err)
         }

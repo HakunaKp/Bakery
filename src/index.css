@@ -142,6 +142,7 @@ div.notification {
 
 /* Notification message */
 .notification__message {
+  pointer-events: none;
   text-align: right;
 }
 
@@ -510,6 +511,39 @@ h1#logo{
   padding: 0 5rem;
 }
 
+/* Pick Up Section */
+
+.pickup {
+  width: 90%;
+  margin: auto;
+  text-align: center;
+}
+
+.pickup-item {
+  margin: 2rem 0rem;
+  align-items: center;
+}
+
+.pickup-item .amount {
+  flex: 1 1 10rem;
+}
+
+div.pickup-form .pickup-tablerows {
+  color: white;
+  text-align: center;
+  justify-content: space-evenly;
+}
+
+div.pickup-form .pickup-theader {
+  padding-left: 7vh;
+  padding-right: 7vh;
+}
+
+div.pickup-form .pickup-tablecells {
+  padding-left: 7vh;
+  padding-right: 7vh;
+}
+
 /* Cart Section */
 
 .cart {
@@ -534,13 +568,13 @@ div.cart-form .cart-tablerows {
 }
 
 div.cart-form .cart-theader {
-  padding-left: 8vh;
-  padding-right: 8vh;
+  padding-left: 7vh;
+  padding-right: 7vh;
 }
 
 div.cart-form .cart-tablecells {
-  padding-left: 8vh;
-  padding-right: 8vh;
+  padding-left: 7vh;
+  padding-right: 7vh;
 }
 
 /* Checkout Section */
