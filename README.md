@@ -38,8 +38,7 @@ Owner can:
 ### To Do:
 - Add date + time to ProcessOrderInput table
 - Add TimePicker UI to PickUp page to complete page
-- PickUp page needs a major bug fix. Page currently needs a refresh before Add to cart button works
--   -*Potential fix is to add item to cart in Order instead of PickUp page
--   -*Another potential fix is 
+- PickUp page needs a major bug fix. Page currently needs to be refreshed before Add to cart button works
+- Potential fix: Add item to cart in Order instead of PickUp page
 - Begin Order Status Page
 - Grant public view access to order form, and all authorized users (not just Admins) can create products.
