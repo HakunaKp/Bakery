@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 import { AmplifyAuthenticator } from '@aws-amplify/ui-react'
 import { API, graphqlOperation } from "aws-amplify"
 import { createProduct } from '../api/mutations'
@@ -6,8 +6,6 @@ import 'react-notifications-component/dist/theme.css'
 import 'animate.css'
 import Carousel from "react-elastic-carousel"
 import Item from "../components/Item"
-import { ProductContext } from '../context/products'
-import { CartContext } from "../context/cart";
 import Options from '../components/ToggleSwitch/Options'
 import OptionsShape from '../components/ToggleSwitch/OptionsShape'
 import ReactNotifications from 'react-notifications-component'
@@ -16,8 +14,7 @@ import Accordion from '../components/Accordion/Accordion'
 import "../components/Accordion/Accordion.css"
 import history from '../components/History'
 
-var reviewReady = false
-
+var reviewReady = false;
 // Function to Create notification
 function CreateNotification(title_string, message_string) {
     store.addNotification({
@@ -36,8 +33,8 @@ function CreateNotification(title_string, message_string) {
 }
 
 const Order = () => {
-
     const rand = Math.random().toString(16).substr(2, 8); // 6de5ccda
+
     const [productDetails, setProductDetails] = useState({ id: rand, flavor: "", shape: "", tier: "", eggless: false, fondant: false, topper: false, 
         characters: false, description: "", price: "0.00" })
 

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import Title from '../components/Title';
-import UploadForm from '../components/UploadForm';
-import ImageGrid from '../components/ImageGrid';
-import Modal from '../components/Modal';
+import Title from '../components/Gallery/Title';
+import UploadForm from '../components/Gallery/UploadForm';
+import ImageGrid from '../components/Gallery/ImageGrid';
+import Modal from '../components/Gallery/Modal';
 
 function Gallery() {
     const [selectedImg, setSelectedImg] = useState(null);

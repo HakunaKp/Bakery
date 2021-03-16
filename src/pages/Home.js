@@ -6,7 +6,6 @@ import history from '../components/History';
 
 export default class Home extends Component {
     render() {
-        const rand = Math.random().toString(16).substr(2, 8); // 6de5ccda
         return(
             <div className='home'>
                 <h1>Madhavi's Specialty Pastry Cakes</h1>
