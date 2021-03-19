@@ -2,19 +2,20 @@ import React, { useState } from 'react'
 import { AmplifyAuthenticator } from '@aws-amplify/ui-react'
 import { API, graphqlOperation } from "aws-amplify"
 import { createProduct } from '../api/mutations'
-import 'react-notifications-component/dist/theme.css'
-import 'animate.css'
+import { store } from 'react-notifications-component'
+import Accordion from '../components/Accordion/Accordion'
 import Carousel from "react-elastic-carousel"
 import Item from "../components/Item"
 import Options from '../components/ToggleSwitch/Options'
 import OptionsShape from '../components/ToggleSwitch/OptionsShape'
 import ReactNotifications from 'react-notifications-component'
-import { store } from 'react-notifications-component'
-import Accordion from '../components/Accordion/Accordion'
-import "../components/Accordion/Accordion.css"
 import history from '../components/History'
+import 'react-notifications-component/dist/theme.css'
+import 'animate.css'
+import "../components/Accordion/Accordion.css"
 
 var reviewReady = false;
+
 // Function to Create notification
 function CreateNotification(title_string, message_string) {
     store.addNotification({
@@ -79,16 +80,25 @@ const Order = () => {
     }
 
     function SaveForm(extrasReady){
+        if (!productDetails.flavor) return CreateNotification("Error", "Flavor is Required!");
+        
         if (extrasReady && document.getElementById("description-box") && document.getElementsByClassName("tier-button")) {
             var tiers = document.getElementsByClassName("tier-button")
+            var tierSelected = false
             var has_eggs = ((document.getElementById("Eggless").className) === "extra-choices text-custom")
             var has_fondant = ((document.getElementById("Fondant").className) === "extra-choices text-custom")
             var has_topper = ((document.getElementById("Topper").className) === "extra-choices text-custom")
-            var has_characters = ((document.getElementById("Characters").className) === "extra-choices text-custom")
+            var has_characters = ((document.getElementById("Characters").className) === "extra-choices text-custom")          
+
             for (var i = 0; i < tiers.length; i++) {
-                if (tiers[i].checked) setProductDetails({...productDetails, tier: tiers[i].id, eggless: has_eggs, fondant: has_fondant, topper: has_topper, 
+                if (tiers[i].checked) {
+                    setProductDetails({...productDetails, tier: tiers[i].id, eggless: has_eggs, fondant: has_fondant, topper: has_topper, 
                 characters: has_characters, description: document.getElementById("description-box").value, price: tiers[i].value })
+                    tierSelected = true
+                }
             }
+
+            if (!tierSelected) return CreateNotification("Error", "Tier is required!")
 
             // Jump to review
             if (document.getElementById("review-header")) document.getElementById("review-header").scrollIntoView({behavior: "smooth", block: "start", inline: "start"}); 
@@ -107,7 +117,7 @@ const Order = () => {
                     name="description"
                     id="description-box"
                 />
-                <input type="button" value="Review" onClick={SaveChoices} />
+                <input type="button" value="Save & Review" onClick={SaveChoices} />
             </div>
         )
     }
@@ -135,6 +145,8 @@ const Order = () => {
             return(
                 <div className="review-form">
                     <h1 id="review-header">Review Selections</h1>
+                    <p styling="align-content: left">Expand for Details</p>
+                    <br></br>
                     <Accordion
                         title= {"Flavor - " + productDetails.flavor}
                         content= {getDescription(productDetails.flavor)}
@@ -158,7 +170,7 @@ const Order = () => {
                     <input
                         id="submit-button" 
                         type="submit" 
-                        value="Submit" 
+                        value="Date & Time Selection" 
                     />
                 </div>
             )
@@ -200,9 +212,9 @@ const Order = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            if (!productDetails.flavor || !productDetails.shape || !productDetails.tier) return;
+            if ((!productDetails.flavor) || (!productDetails.shape) || (!productDetails.tier)) return
             await API.graphql(graphqlOperation(createProduct, { input: productDetails }))
-            history.push(`/pickup/${productDetails.id}`)
+            return history.push(`/pickup/${productDetails.id}`)
         } catch (err) {
             console.log('error creating todo:', err)
         }

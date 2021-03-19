@@ -1,7 +1,7 @@
 import React, {Component} from "react";
+import { Button } from 'react-bootstrap';
 import Carousel from "react-elastic-carousel";
 import Item from "../components/Item";
-import { Button } from 'react-bootstrap';
 import history from '../components/History';
 
 export default class Home extends Component {

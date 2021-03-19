@@ -1,12 +1,14 @@
 import React, { useContext } from "react";
+import { useParams } from "react-router-dom";
 import { CartContext } from "../context/cart";
 import { FiChevronUp } from "react-icons/fi";
 import { FiChevronDown } from "react-icons/fi";
-import history from '../components/History';
 import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
+import history from '../components/History';
 
 const Cart = () => {
 
+  const { id, date, time } = useParams();
   const { cart, total, increaseAmount, decreaseAmount } = useContext(CartContext)
 
   if (!cart.length) {
@@ -64,7 +66,7 @@ const Cart = () => {
       </div>
 
       <div>
-        <button className="btn" onClick={() => history.push("/checkout")}>Checkout</button>
+        <button className="btn" onClick={() => history.push(`/checkout/${id}/${date}/${time}/`)}>Checkout</button>
       </div>
       
     </section>

@@ -8,6 +8,8 @@ export const getOrder = /* GraphQL */ `
       user
       date
       total
+      pickupDate
+      pickupTime
       products {
         items {
           id
@@ -35,6 +37,8 @@ export const listOrders = /* GraphQL */ `
         user
         date
         total
+        pickupDate
+        pickupTime
         products {
           nextToken
         }

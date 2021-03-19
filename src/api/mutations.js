@@ -113,6 +113,8 @@ export const createProductOrder = /* GraphQL */ `
         user
         date
         total
+        pickupDate
+        pickupTime
         products {
           nextToken
         }
@@ -150,6 +152,8 @@ export const updateProductOrder = /* GraphQL */ `
         user
         date
         total
+        pickupDate
+        pickupTime
         products {
           nextToken
         }
@@ -187,6 +191,8 @@ export const deleteProductOrder = /* GraphQL */ `
         user
         date
         total
+        pickupDate
+        pickupTime
         products {
           nextToken
         }
@@ -220,6 +226,8 @@ export const createOrder = /* GraphQL */ `
       user
       date
       total
+      pickupDate
+      pickupTime
       products {
         items {
           id
@@ -245,6 +253,8 @@ export const updateOrder = /* GraphQL */ `
       user
       date
       total
+      pickupDate
+      pickupTime
       products {
         items {
           id
@@ -270,6 +280,8 @@ export const deleteOrder = /* GraphQL */ `
       user
       date
       total
+      pickupDate
+      pickupTime
       products {
         items {
           id

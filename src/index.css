@@ -24,7 +24,6 @@ header .scrolldown a {
 }
 header .scrolldown a:hover { color: #0762f9; }
 
-
 /* Home page styles */
 
 div.home h1 {
@@ -82,6 +81,7 @@ div.home h1 {
 .rec.rec-arrow:disabled {
   visibility: hidden;
 }
+
 /* disable default outline on focused items */
 /* add custom outline on focused items */
 .rec-carousel-item:focus {
@@ -134,6 +134,7 @@ ul#nav li.current a { color: #fe6928; }
 
 /* Notification title */
 div.notification {
+  pointer-events: auto;
   box-shadow:5vh 5vh 7.5vh #131c27;
   margin-top:2.5%;
   margin-bottom: 2.5%;
@@ -142,7 +143,6 @@ div.notification {
 
 /* Notification message */
 .notification__message {
-  pointer-events: none;
   text-align: right;
 }
 
@@ -156,6 +156,7 @@ div.notifications-component{
 }
 
 div.notification-container--top-full{
+  pointer-events: none;
   padding-top: 5%;
   padding-bottom: 5%;
 }
@@ -271,7 +272,6 @@ label input{
   color: var(--error);
 }
 
-
 /* progress bar styles */
 .progress-bar{
   height: 5px;
@@ -310,7 +310,6 @@ label input{
 h1#logo{
   font-size: 2.25rem;
 }
-
 
 /* image grid styles */
 .img-grid{

@@ -4,92 +4,94 @@ import { ProductContext } from "../context/products";
 import { CartContext } from "../context/cart";
 import { Button } from 'react-bootstrap';
 import history from '../components/History';
-import { format } from 'date-fns'
-import { enGB } from 'date-fns/locale'
-import { bool, instanceOf, func, object, objectOf, string } from 'prop-types'
-import { isSameDay, startOfMonth } from 'date-fns'
-import { isSelectable, mergeModifiers, setTime } from '../components/Calendar/utils'
-import useControllableState from '../components/Calendar/useControllableState'
-import Calendar from '../components/Calendar/Calendar'
-import '../components/Calendar/style.css'
+import 'date-fns';
+
+import DateFnsUtils from '@date-io/date-fns';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker,
+  KeyboardTimePicker
+} from '@material-ui/pickers';
+
+function checkAvailability(date) {
+  // Return false if Saturday or Sunday
+  return date.getDay() === 0 || date.getDay() === 6;
+}
+
+function formatDate(date) {
+  var month = date.substring(0, 2)
+  var day = date.substring(3, 5)
+
+  if (month === "01") return ("January" + day)
+  if (month === "02") return ("February" + day)
+  if (month === "03") return ("March" + day)
+  if (month === "04") return ("April" + day)
+  if (month === "05") return ("May" + day)
+  if (month === "06") return ("June" + day)
+  if (month === "07") return ("July" + day)
+  if (month === "08") return ("August" + day)
+  if (month === "09") return ("September" + day)
+  if (month === "10") return ("October" + day)
+  if (month === "11") return ("November" + day)
+  if (month === "12") return ("December" + day)
+}
+
+// remove all whitespace and : characters from time before routing
+function formatTime(time) {
+  var formattedTime = ""
+  for (let i in time) {
+    if (time[i] !== ":" && time[i] !== " ") formattedTime += time[i];
+  }
+  return formattedTime
+}
 
 const PickUp = () => {
-
-  function DatePickerCalendar({
-    locale,
-    date: selectedDate,
-    month: receivedMonth,
-    onDateChange,
-    onMonthChange,
-    minimumDate,
-    maximumDate,
-    modifiers: receivedModifiers,
-    modifiersClassNames,
-    weekdayFormat,
-    touchDragEnabled
-  }) {
-    const isSelected = date => isSameDay(date, selectedDate) && isSelectable(date, { minimumDate, maximumDate })
-    const modifiers = mergeModifiers({ selected: isSelected, disabled: isSelected }, receivedModifiers)
-    const [month, setMonth] = useControllableState(receivedMonth, onMonthChange, startOfMonth(selectedDate || new Date()))
-  
-    const handleDateChange = date => {
-      onDateChange(selectedDate ? setTime(date, selectedDate) : date)
-    }
-  
-    return (
-      <Calendar
-        locale={locale}
-        month={month}
-        onMonthChange={setMonth}
-        onDayClick={handleDateChange}
-        minimumDate={minimumDate}
-        maximumDate={maximumDate}
-        modifiers={modifiers}
-        modifiersClassNames={modifiersClassNames}
-        weekdayFormat={weekdayFormat}
-        touchDragEnabled={touchDragEnabled}
-      />
-    )
-  }
-  
-  DatePickerCalendar.propTypes = {
-    locale: object.isRequired,
-    date: instanceOf(Date),
-    month: instanceOf(Date),
-    onDateChange: func,
-    onMonthChange: func,
-    minimumDate: instanceOf(Date),
-    maximumDate: instanceOf(Date),
-    modifiers: objectOf(func),
-    modifiersClassNames: objectOf(string),
-    weekdayFormat: string,
-    touchDragEnabled: bool
-  }
-  
   const { id } = useParams();
   const { products } = useContext(ProductContext);
   const { addToCart } = useContext(CartContext);
-  const [date, setDate] = useState();
+  
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
 
   return (
     <section className="pickUp">
-      <h1 className="pickUpHeader">Select Pick Up Time & Date</h1>
-      <p className="dateHeader">Selected date: {date ? format(date, 'dd MMM yyyy', { locale: enGB }) : 'none'}.</p>
-      <div className="calendar">
-        <DatePickerCalendar date={date} onDateChange={setDate} locale={enGB} />
-      </div>
+      <div className="pickUp-content">
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <div className="pickUp-date">
+            <KeyboardDatePicker
+              label="Material Date Picker"
+              format="MM/dd/yyyy"
+              id="date-picker"
+              value={selectedDate}
+              onChange={handleDateChange}
+              shouldDisableDate={checkAvailability}
+            />
+          </div>
+          
+          <div className="pickUp-time">
+            <KeyboardTimePicker
+            id="time-picker"
+            label="Time picker"
+            value={selectedDate}
+            onChange={handleDateChange}
+            />
+          </div>
+        </MuiPickersUtilsProvider>
 
-      <div>
         <Button className="home-buttons" variant="btn btn-success" onClick={() =>{
           products.forEach(product => {
             if (product.id === id) {
               addToCart({ ...product, id });
-              return history.push("/cart");
+              var formatted_date = formatDate(document.getElementById("date-picker").value)
+              var formatted_time = formatTime(document.getElementById("time-picker").value)
+              return history.push(`/cart/${id}/${formatted_date}/${formatted_time}`);
             }
           })
-        }}>Add To Cart</Button>
+        }}>Proceed to Checkout</Button>
+        
       </div>
-      
     </section>
   );
 };

@@ -45,8 +45,6 @@ class OptionsShape extends Component {
                 if (enabled) {
                     CreateNotification("Added Shape", "Cake is now circular");
                     chosenShape = "Circle";
-                } else {
-                    CreateNotification("Removed Shape", "Cake is not circular");
                 }
                 break;
 
@@ -54,8 +52,6 @@ class OptionsShape extends Component {
                 if (enabled) {
                     CreateNotification("Added Shape", "Cake is now rectangular");
                     chosenShape = "Rectangle";
-                } else {
-                    CreateNotification("Removed Customization", "Cake is not rectangular");
                 }
                 break;
 
@@ -63,8 +59,6 @@ class OptionsShape extends Component {
                 if (enabled) {
                     CreateNotification("Added Shape", "Cake is now heart-shaped");
                     chosenShape = "Heart";
-                } else {
-                    CreateNotification("Removed Shape", "Cake is not heart-shaped");
                 }
                 break;
 
