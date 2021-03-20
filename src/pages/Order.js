@@ -3,6 +3,12 @@ import { AmplifyAuthenticator } from '@aws-amplify/ui-react'
 import { API, graphqlOperation } from "aws-amplify"
 import { createProduct } from '../api/mutations'
 import { store } from 'react-notifications-component'
+import FlavorDescription from '../components/Accordion/Descriptions/FlavorDescription'
+import ShapeDescription from '../components/Accordion/Descriptions/ShapeDescription'
+import TierTitle from '../components/Accordion/Descriptions/TierTitle'
+import TierDescription from '../components/Accordion/Descriptions/TierDescription'
+import ExtrasTitle from '../components/Accordion/Descriptions/ExtrasTitle'
+import ExtrasDescription from '../components/Accordion/Descriptions/ExtrasDescription'
 import Accordion from '../components/Accordion/Accordion'
 import Carousel from "react-elastic-carousel"
 import Item from "../components/Item"
@@ -34,6 +40,8 @@ function CreateNotification(title_string, message_string) {
 }
 
 const Order = () => {
+    const FLAVORS = ['Strawberry', 'Blueberry', 'Mango', 'Pineapple', 'Black Forest', 'Butterscotch', 'Chocolate Ganache'];
+
     const rand = Math.random().toString(16).substr(2, 8); // 6de5ccda
 
     const [productDetails, setProductDetails] = useState({ id: rand, flavor: "", shape: "", tier: "", eggless: false, fondant: false, topper: false, 
@@ -58,13 +66,11 @@ const Order = () => {
         <div className="flavor-form">
             <h1>Select Flavor (Required)</h1>
             <Carousel breakPoints={breakPoints} fade="true" transition="5000">
-                <Item className="Flavor" id="Strawberry" onClick={(e) => PickFlavor(e)} >Strawberry</Item>
-                <Item className="Flavor" id="Blueberry" onClick={(e) => PickFlavor(e)} >Blueberry</Item>
-                <Item className="Flavor" id="Mango" onClick={(e) => PickFlavor(e)} >Mango</Item>
-                <Item className="Flavor" id="Pineapple" onClick={(e) => PickFlavor(e)} >Pineapple</Item>
-                <Item className="Flavor" id="Black-Forest" onClick={(e) => PickFlavor(e)} >Black Forest</Item>
-                <Item className="Flavor" id="Butterscotch" onClick={(e) => PickFlavor(e)} >Butterscotch</Item>
-                <Item className="Flavor" id="Chocolate-Ganache" onClick={(e) => PickFlavor(e)} >Chocolate Ganache</Item>
+            {FLAVORS.map((flavor) => {
+                if (flavor === 'Chocolate Ganache') return ( <Item className="Flavor" id='Chocolate-Ganache' onClick={(e) => PickFlavor(e)} >{flavor}</Item> )
+                if (flavor === 'Black Forest') return ( <Item className="Flavor" id='Black-Forest' onClick={(e) => PickFlavor(e)} >{flavor}</Item> )
+                return ( <Item className="Flavor" id={flavor} onClick={(e) => PickFlavor(e)} >{flavor}</Item> )
+            })}
             </Carousel>
         </div>
         )
@@ -122,49 +128,31 @@ const Order = () => {
         )
     }
 
-    function getDescription(string) {
-        if (string === "Blueberry") {
-            return "A rich inner-filling topped with blueberry flavored whipped topping and fresh blueberries"
-        } else if (string === "Strawberry") {
-            return "A rich inner-filling topped with strawberry flavored whipped topping and fresh strawberry slices"
-        } else if (string === "Mango") {
-            return "A rich inner-filling topped with mango flavored whipped topping and fresh mango slices"
-        } else if (string === "Pineapple") {
-            return "A rich inner-filling topped with pineapple flavored whipped topping and fresh mango slices"
-        } else if (string === "Black Forest") {
-            return "A rich inner-filling topped with whipped topping and maraschino cherries in syrup"
-        } else if (string === "Butterscotch") {
-            return "A rich inner-filling topped with butterscotch flavored whipped topping"
-        } else if (string === "Chocolate Ganache") {
-            return "A rich inner-filling coated with a delicious layer of melted chocolate"
-        } else return
-    }
-
     function Review() {
         if (reviewReady) {
             return(
                 <div className="review-form">
                     <h1 id="review-header">Review Selections</h1>
-                    <p styling="align-content: left">Expand for Details</p>
+                    <p styling="align-content: left">The selections below will be added to cart</p>
                     <br></br>
                     <Accordion
                         title= {"Flavor - " + productDetails.flavor}
-                        content= {getDescription(productDetails.flavor)}
+                        content= {FlavorDescription(productDetails.flavor)}
                     />
                     <Accordion
                         title= {"Shape - " + productDetails.shape}
+                        content= {ShapeDescription(productDetails.shape)}
                     />
                     <Accordion
-                        title= {"Tier - " + productDetails.tier}
-                        content= {productDetails.tier}
+                        title= {TierTitle(productDetails.tier)}
+                        content= {TierDescription(productDetails.shape, productDetails.tier)}
                     />
                     <Accordion
-                        title= "Extras"
-                        content= {"Eggs: " + productDetails.eggless + "Fondant: " + productDetails.fondant
-                        + "Toppers: " + productDetails.topper + "Characters: " + productDetails.characters}
+                        title= {ExtrasTitle(productDetails.eggless, productDetails.fondant, productDetails.topper, productDetails.characters)}
+                        content= {ExtrasDescription(productDetails.eggless, productDetails.fondant, productDetails.topper, productDetails.characters)}
                     />
                     <Accordion
-                        title= "Description"
+                        title= "Description - Expand"
                         content= {productDetails.description}
                     />
                     <input
@@ -205,6 +193,14 @@ const Order = () => {
             <div className="optional-form" id="pick-option">
                 <h1>Extras (Optional)</h1>
                 <Options render/>
+                <div>
+                    <h3>Eggless: Yogurt-based substite.<h3>
+                    </h3>Fondant: A delicious icing accessory made with 100% edible ingredients.</h3>
+                </div>
+                <div>
+                    <h3>Topper: Non-edible props, birthday messages, accessories.</h3>
+                    <h3>Character: Non-edible figurine and collectible characters.</h3>
+                </div>
             </div>
         )
     }

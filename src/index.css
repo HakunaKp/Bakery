@@ -621,6 +621,7 @@ div.cart-form .cart-tablecells {
   align-items: center;
   justify-content: center;
   height: 100vh;
+  scroll-behavior: smooth;
 }
 
 div.flavor-form h1 {

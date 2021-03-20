@@ -100,7 +100,7 @@ class Options extends Component {
                         enabled={enabled}
                         onStateChanged={ this.toggleActivityEnabled(key) }
                     />
-                    <span id={activity} className={activityClasses}>{ activity }</span>
+                    <span id={activity} className={activityClasses}>{activity}</span>
                 </div>
             );
         })
