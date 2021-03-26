@@ -4,8 +4,8 @@ import { ProductContext } from "../context/products";
 import { CartContext } from "../context/cart";
 import { Button } from 'react-bootstrap';
 import history from '../components/History';
-import 'date-fns';
 
+import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import {
   MuiPickersUtilsProvider,
@@ -55,30 +55,43 @@ const PickUp = () => {
     setSelectedDate(date);
   };
 
+  const [selectedTime, setSelectedTime] = useState(new Date());
+  const handleTimeChange = (time) => {
+    setSelectedTime(time);
+  };
+
   return (
     <section className="pickUp">
       <div className="pickUp-content">
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <div className="pickUp-date">
+          <div className="pickUp-selections">
+
+            <h1>Select Pick Up Date &amp; Time</h1>
+
             <KeyboardDatePicker
-              label="Material Date Picker"
+              label="Date Selection"
               format="MM/dd/yyyy"
               id="date-picker"
-              value={selectedDate}
+              style={{width:"100%"}} 
               onChange={handleDateChange}
+              value={selectedDate}
               shouldDisableDate={checkAvailability}
             />
           </div>
           
-          <div className="pickUp-time">
+          <div className="pickUp-selections">
             <KeyboardTimePicker
             id="time-picker"
-            label="Time picker"
-            value={selectedDate}
-            onChange={handleDateChange}
+            label="Time Selection"
+            style={{width:"100%"}}
+            value={selectedTime}
+            onChange={handleTimeChange}
             />
           </div>
         </MuiPickersUtilsProvider>
+
+        <div className="pickUp-selections">
+        </div>
 
         <Button className="home-buttons" variant="btn btn-success" onClick={() =>{
           products.forEach(product => {

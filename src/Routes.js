@@ -9,6 +9,7 @@ import PickUp from './pages/PickUp';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
 import Error from './pages/Error';
+import Success from './pages/Success';
 import history from './components/History';
 
 export default class Routes extends Component {  
@@ -22,8 +23,9 @@ export default class Routes extends Component {
           <Route path='/order/' exact component={Order} />
           <Route path='/pickup/:id' component={PickUp} />
           <Route path='/cart/:id/:date/:time' component={Cart} />
-          <Route path='/checkout/:id/:date/:time' component={Checkout} />
-          <Route path='*' exact component={Home} />
+          <Route path='/checkout/:date/:time' component={Checkout} />
+          <Route path='/success/:date/:time' component={Success} />
+          <Route path='*' exact component={Error} />
         </Switch>
       </Router>
     )

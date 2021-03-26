@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { useHistory } from "react-router-dom";
 import { ProductContext } from "../context/products";
 import { CartContext } from "../context/cart";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import history from '../components/History';
 
 const CARD_ELEMENT_OPTIONS = {
   style: {
@@ -28,21 +28,19 @@ const CheckoutForm = () => {
   const { checkout } = useContext(ProductContext);
 
   // set pickupdate and time from url
-  const { id, date, time } = useParams();
+  const { date, time } = useParams();
   const [orderDetails, setOrderDetails] = useState({ cart, total, pickupDate: date, pickupTime: time, token: null });
 
   const [error, setError] = useState(null);
   const stripe = useStripe();
   const elements = useElements();
-  const history = useHistory();
 
   useEffect(() => {
     if (orderDetails.token) {
       checkout(orderDetails);
-      //clearCart();
-      //history.push("/");
+      clearCart();
     }
-  }, [orderDetails]);
+  }, [orderDetails, checkout, clearCart]);
 
   // Handle real-time validation errors from the card Element.
   const handleChange = (event) => {
@@ -66,6 +64,7 @@ const CheckoutForm = () => {
       // Send the token to your server.
       const token = result.token;
       setOrderDetails({ ...orderDetails, token: token.id });
+      history.push(`/success/${orderDetails.pickupDate}/${orderDetails.pickupTime}`);
     }
   };
 

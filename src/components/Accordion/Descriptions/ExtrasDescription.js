@@ -1,4 +1,6 @@
 export default function ExtrasDescription(eggless_choice, fondant_choice, topper_choice, characters_choice) {
+    
+    if (!eggless_choice && !fondant_choice &&!topper_choice && !characters_choice) return 'No Extras Selected.'
 
     var eggless = ""
     var fondant = ""

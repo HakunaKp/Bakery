@@ -34,6 +34,9 @@ function PickTier(e) {
   if (e.target.id === "square") CreateNotification("Saved Tier", "Square - (8\" x 8\")");
   else if (e.target.id === "quarter") CreateNotification("Saved Tier", "Quarter Sheet (8\" x 12\")");
   else if (e.target.id === "half") CreateNotification("Saved Tier", "Half Sheet (16\" x 24\")");
+
+  document.getElementById("pick-extras").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+
 }
 
 class RectangleTierTable extends Component{

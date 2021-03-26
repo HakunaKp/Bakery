@@ -32,6 +32,8 @@ function PickTier(e) {
 
   // Saved Tier Notification
   CreateNotification("Saved Tier", "Heart - " + e.target.id);
+
+  document.getElementById("pick-extras").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
 }
 
 class HeartTierTable extends Component{

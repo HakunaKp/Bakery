@@ -21,6 +21,7 @@ export const createProduct = /* GraphQL */ `
       topper
       characters
       description
+      allergies
       price
       orders {
         items {
@@ -52,6 +53,7 @@ export const updateProduct = /* GraphQL */ `
       topper
       characters
       description
+      allergies
       price
       orders {
         items {
@@ -83,6 +85,7 @@ export const deleteProduct = /* GraphQL */ `
       topper
       characters
       description
+      allergies
       price
       orders {
         items {
@@ -125,9 +128,6 @@ export const createProductOrder = /* GraphQL */ `
       updatedAt
       product {
         id
-        description
-        image
-        eggless
         price
         orders {
           nextToken
@@ -164,9 +164,6 @@ export const updateProductOrder = /* GraphQL */ `
       updatedAt
       product {
         id
-        description
-        image
-        eggless
         price
         orders {
           nextToken
@@ -203,9 +200,6 @@ export const deleteProductOrder = /* GraphQL */ `
       updatedAt
       product {
         id
-        description
-        image
-        eggless
         price
         orders {
           nextToken

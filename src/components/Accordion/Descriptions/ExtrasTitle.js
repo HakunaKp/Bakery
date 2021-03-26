@@ -1,4 +1,7 @@
 export default function ExtrasTitle(eggless_choice, fondant_choice, topper_choice, characters_choice){
+
+    if (!eggless_choice && !fondant_choice &&!topper_choice && !characters_choice) return 'Extras - None'
+
     var eggless = ""
     var fondant = ""
     var topper = ""

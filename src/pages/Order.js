@@ -9,6 +9,10 @@ import TierTitle from '../components/Accordion/Descriptions/TierTitle'
 import TierDescription from '../components/Accordion/Descriptions/TierDescription'
 import ExtrasTitle from '../components/Accordion/Descriptions/ExtrasTitle'
 import ExtrasDescription from '../components/Accordion/Descriptions/ExtrasDescription'
+import DescriptionTitle from '../components/Accordion/Descriptions/DescriptionTitle'
+import DescriptionDescription from '../components/Accordion/Descriptions/DescriptionDescription'
+import AllergiesTitle from '../components/Accordion/Descriptions/AllergiesTitle'
+import AllergiesDescription from '../components/Accordion/Descriptions/AllergiesDescription'
 import Accordion from '../components/Accordion/Accordion'
 import Carousel from "react-elastic-carousel"
 import Item from "../components/Item"
@@ -45,7 +49,7 @@ const Order = () => {
     const rand = Math.random().toString(16).substr(2, 8); // 6de5ccda
 
     const [productDetails, setProductDetails] = useState({ id: rand, flavor: "", shape: "", tier: "", eggless: false, fondant: false, topper: false, 
-        characters: false, description: "", price: "0.00" })
+        characters: false, description: "", allergies: "", price: "0.00" })
 
     const breakPoints = [
         { width: 1, itemsToShow: 1 },
@@ -88,7 +92,7 @@ const Order = () => {
     function SaveForm(extrasReady){
         if (!productDetails.flavor) return CreateNotification("Error", "Flavor is Required!");
         
-        if (extrasReady && document.getElementById("description-box") && document.getElementsByClassName("tier-button")) {
+        if (extrasReady && document.getElementById("description-box") && document.getElementById("allergies-box") && document.getElementsByClassName("tier-button")) {
             var tiers = document.getElementsByClassName("tier-button")
             var tierSelected = false
             var has_eggs = ((document.getElementById("Eggless").className) === "extra-choices text-custom")
@@ -99,12 +103,14 @@ const Order = () => {
             for (var i = 0; i < tiers.length; i++) {
                 if (tiers[i].checked) {
                     setProductDetails({...productDetails, tier: tiers[i].id, eggless: has_eggs, fondant: has_fondant, topper: has_topper, 
-                characters: has_characters, description: document.getElementById("description-box").value, price: tiers[i].value })
+                        characters: has_characters, description: document.getElementById("description-box").value, 
+                        allergies: document.getElementById("allergies-box").value, price: tiers[i].value 
+                    })
                     tierSelected = true
                 }
             }
 
-            if (!tierSelected) return CreateNotification("Error", "Tier is required!")
+            if (!tierSelected && !productDetails.tier) return CreateNotification("Error", "Tier is required!")
 
             // Jump to review
             if (document.getElementById("review-header")) document.getElementById("review-header").scrollIntoView({behavior: "smooth", block: "start", inline: "start"}); 
@@ -118,12 +124,27 @@ const Order = () => {
                 <h1>Description (Optional)</h1>
                 <textarea 
                     type="text" 
-                    rows="8" 
-                    placeholder="Enter Cake Description and list any dietary restrictions."
+                    rows="7" 
+                    placeholder="- Theme&#10;- Color Choices&#10;- Written Messages&#10;- Fondant Details&#10;- Desired Toppers&#10;- Desired Characters&#10;- Etc."
                     name="description"
                     id="description-box"
                 />
-                <input type="button" value="Save & Review" onClick={SaveChoices} />
+            </div>
+        )
+    }
+
+    function Allergies() {
+        return (
+            <div className="allergies-form">
+                <h1>Allergies (Optional)</h1>
+                <textarea 
+                    type="text" 
+                    rows="3" 
+                    placeholder="Please list any allergies or dietary restrictions (Leave blank if not applicable)"
+                    name="allergies"
+                    id="allergies-box"
+                />
+                <input type="button" value="Save &amp; Review" onClick={SaveChoices} />
             </div>
         )
     }
@@ -132,8 +153,8 @@ const Order = () => {
         if (reviewReady) {
             return(
                 <div className="review-form">
-                    <h1 id="review-header">Review Selections</h1>
-                    <p styling="align-content: left">The selections below will be added to cart</p>
+                    <br></br>
+                    <p id="review-selections" styling="align-content: left">The selections below will be added to cart</p>
                     <br></br>
                     <Accordion
                         title= {"Flavor - " + productDetails.flavor}
@@ -152,13 +173,17 @@ const Order = () => {
                         content= {ExtrasDescription(productDetails.eggless, productDetails.fondant, productDetails.topper, productDetails.characters)}
                     />
                     <Accordion
-                        title= "Description - Expand"
-                        content= {productDetails.description}
+                        title= {DescriptionTitle(productDetails.description)}
+                        content= {DescriptionDescription(productDetails.description)}
+                    />
+                    <Accordion
+                        title= {AllergiesTitle(productDetails.allergies)}
+                        content= {AllergiesDescription(productDetails.allergies)}
                     />
                     <input
                         id="submit-button" 
                         type="submit" 
-                        value="Date & Time Selection" 
+                        value="Date &amp; Time Selection" 
                     />
                 </div>
             )
@@ -169,6 +194,9 @@ const Order = () => {
     function SaveChoices() {
         SaveForm(true)
         reviewReady = true
+        if (document.getElementById("review-selections")){
+            document.getElementById("review-selections").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"})
+        }
         return
     }
 
@@ -191,11 +219,11 @@ const Order = () => {
         SaveShape()
         return (
             <div className="optional-form" id="pick-option">
-                <h1>Extras (Optional)</h1>
+                <h1 id="pick-extras">Extras (Optional)</h1>
                 <Options render/>
                 <div>
-                    <h3>Eggless: Yogurt-based substite.<h3>
-                    </h3>Fondant: A delicious icing accessory made with 100% edible ingredients.</h3>
+                    <h3>Eggless: Yogurt-based substite.</h3>
+                    <h3>Fondant: A delicious icing accessory made with 100% edible ingredients.</h3>
                 </div>
                 <div>
                     <h3>Topper: Non-edible props, birthday messages, accessories.</h3>
@@ -227,6 +255,7 @@ const Order = () => {
                             <Shape />
                             <Optional />
                             <Description />
+                            <Allergies />
                             <Review />
                         </div>
                     </form>

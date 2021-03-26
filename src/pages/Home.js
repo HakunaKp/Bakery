@@ -8,7 +8,7 @@ export default class Home extends Component {
     render() {
         return(
             <div className='home'>
-                <h1>Madhavi's Specialty Pastry Cakes</h1>
+                <h1>Monica's Specialty Pastry Cakes</h1>
                 <Carousel disableArrowsOnEnd={false}>
                     <div className="item">
                         <Item className="homeCarousel">

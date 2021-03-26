@@ -24,7 +24,7 @@ header .scrolldown a {
 }
 header .scrolldown a:hover { color: #0762f9; }
 
-/* Home page styles */
+/* Home Section */
 
 div.home h1 {
   padding-top: 2.5%;
@@ -418,98 +418,6 @@ h1#logo{
   width: 100%;
 }
 
-/* Featured Products and Products Section */
-
-.featured-head {
-  background: #343c44;
-  padding: 2rem;
-  color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.products {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  text-align: center;
-  margin: auto;
-}
-
-.product {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1), 0px 20px 20px rgba(0, 0, 0, 0.1);
-  border-top: 1px solid #efefef;
-  background: floralwhite;
-}
-
-.featured-list {
-  justify-content: space-evenly;
-}
-
-.featured-product {
-  margin: 1rem 0;
-}
-
-.product-image {
-  flex: 3 1 100rem;
-  padding: 2rem 0rem;
-}
-
-.product-link {
-  flex: 1 1 100rem;
-  background: #55606c;
-  font-size: 1.7rem;
-  width: 100%;
-  height: 100%;
-}
-
-.product-link:hover {
-  background: #343c43;
-}
-
-.product img {
-  width: 20%;
-  height: auto;
-}
-
-/* Product Details Section */
-
-.product-details {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  width: 90%;
-  margin: auto;
-  height: 80vh;
-  text-align: center
-}
-
-.detail-image {
-  text-align: center;
-  width:500px;
-  height:600px;
-}
-
-.image-formatting {
-  width:500px;
-  height:600px;
-}
-
-.detail-description {
-  display: flex;
-  flex: 1 1 50rem;
-  flex-direction: column;
-  justify-content: space-evenly;
-  height: 75%;
-  padding: 0 5rem;
-}
-
 /* Pick Up Section */
 
 .pickUp h1, p{
@@ -531,17 +439,37 @@ h1#logo{
   text-align: center;
 }
 
-.pickup-item {
-  margin: 2rem 0rem;
-  align-items: center;
+div.pickUp-selections{
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 2.5%;
+  margin-bottom: 2.5%;
+  padding: 1%;
+  text-align: center;
 }
 
-.pickup-item .amount {
-  flex: 1 1 10rem;
+div > button.MuiPickersCalendarHeader-iconButton{
+  background-color: #cad0f1;
 }
 
-div.pickup-form .pickup-tablerows {
-  color: white;
+div > button.MuiPickersCalendarHeader-iconButton:hover{
+  background-color: #7786df;
+}
+
+span > p.MuiTypography-colorInherit {
+  color: black;
+}
+
+div > .MuiFormControl-root  > #date-picker-label{
+  font-size: 1.75rem;
+  text-align: left;
+  justify-content: left; 
+}
+
+div > .MuiFormControl-root  > #time-picker-label{
+  font-size: 1.75rem;
+  text-align: left;
+  justify-content: left; 
 }
 
 /* Cart Section */
@@ -575,6 +503,11 @@ div.cart-form .cart-theader {
 div.cart-form .cart-tablecells {
   padding-left: 7vh;
   padding-right: 7vh;
+}
+
+div.cart-text {
+  padding-top: 2%;
+  padding-bottom: 2%;
 }
 
 /* Checkout Section */
@@ -732,6 +665,27 @@ div#Chocolate-Ganache:hover {
   scale:1.035;
 }
 
+span#span-circle{
+  text-align:center;
+  font-size: 220%;
+  line-height: 2.25;
+  width: 100%;
+}
+
+span#span-rectangle{
+  text-align:center;
+  font-size: 220%;
+  line-height: 2.25;
+  width: 100%;
+}
+
+span#span-heart{
+  text-align:center;
+  font-size: 220%;
+  line-height: 2.25;
+  width: 100%;
+}
+
 div.tier-form {
   vertical-align: middle;
   color: white;
@@ -754,33 +708,10 @@ div#pick-option h1 {
 
 div.description-form h1 {
   text-align: left;
-  padding-bottom: 2.5vh;
 }
 
 #submit-button {
   margin-top: 1.5%;
-}
-
-.popup {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-  background-color: rgba(0,0,0, 0.5);
-}
-.popup_inner {
-  position: absolute;
-  left: 25%;
-  right: 25%;
-  top: 25%;
-  bottom: 25%;
-  margin: auto;
-  border-radius: 20px;
-  background: white;
 }
 
 /* inspired by: https://css-tricks.com/responsive-data-tables/ */

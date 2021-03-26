@@ -66,6 +66,7 @@ export const listProducts = /* GraphQL */ `
         topper
         characters
         description
+        allergies
         price
         createdAt
         updatedAt
@@ -86,6 +87,7 @@ export const getProduct = /* GraphQL */ `
       topper
       characters
       description
+      allergies
       price
       orders {
         items {

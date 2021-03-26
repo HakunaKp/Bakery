@@ -33,12 +33,12 @@ const CartProvider = ({ children }) => {
   };
 
   const addToCart = (product) => {
-    const { id, flavor, shape, tier, eggless, fondant, topper, characters, description, price } = product;
+    const { id, flavor, shape, tier, eggless, fondant, topper, characters, description, allergies, price } = product;
     const cartItem = [...cart].find((item) => item.id === id);
     if (cartItem) {
       increaseAmount(id);
     } else {
-      const cartItems = [...cart, { id, flavor, shape, tier, eggless, fondant, topper, characters, description, price, amount: 1 }];
+      const cartItems = [...cart, { id, flavor, shape, tier, eggless, fondant, topper, characters, description, allergies, price, amount: 1 }];
       setCart(cartItems);
     }
   };

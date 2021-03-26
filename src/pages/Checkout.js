@@ -1,6 +1,5 @@
 import React from 'react'
 import CheckoutForm from "../components/CheckoutForm";
-import history from '../components/History'
 import { AmplifyAuthenticator } from '@aws-amplify/ui-react';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
@@ -13,6 +12,7 @@ const Checkout = () => {
             <AmplifyAuthenticator>
                 <Elements stripe={stripePromise}>
                     <section>
+                        <br></br>
                         <h2>Time to Checkout?</h2>
                         <CheckoutForm />
                     </section>
