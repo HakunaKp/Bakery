@@ -15,8 +15,8 @@ Owner can:
 
 ## 3/27/2021 Progress Update: 
 
-The base functionality is complete.
-There is one bug: Pick up page needs to be refreshed product can be added to cart.
+- The base functionality is complete.
+- There is one bug: pick up page needs to be refreshed before product can be added to cart.
 
 ### Back End Tools & Services
 - AWS Amplify
@@ -29,7 +29,7 @@ There is one bug: Pick up page needs to be refreshed product can be added to car
 ### Front End Features
 Responsive pages:
 - Home: carousel
-- Gallery: instagram style display, animated popups [Firebase Gallery](https://www.youtube.com/watch?v=vUe91uOx7R0)
+- Gallery: instagram style display, animated popups ([Firebase Gallery](https://www.youtube.com/watch?v=vUe91uOx7R0))
 - Order: iOS style toggleswitch, accordion, carousels, responsive table
 - PickUp: Material UI date + time pickers
 - Cart: responsive table
