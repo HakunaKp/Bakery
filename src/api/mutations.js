@@ -111,8 +111,27 @@ export const createProductOrder = /* GraphQL */ `
       id
       product_id
       order_id
+      product {
+        id
+        flavor
+        shape
+        tier
+        eggless
+        fondant
+        topper
+        characters
+        description
+        allergies
+        price
+        orders {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       order {
         id
+        email
         user
         date
         total
@@ -126,15 +145,6 @@ export const createProductOrder = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      product {
-        id
-        price
-        orders {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
     }
   }
 `;
@@ -147,8 +157,27 @@ export const updateProductOrder = /* GraphQL */ `
       id
       product_id
       order_id
+      product {
+        id
+        flavor
+        shape
+        tier
+        eggless
+        fondant
+        topper
+        characters
+        description
+        allergies
+        price
+        orders {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       order {
         id
+        email
         user
         date
         total
@@ -162,15 +191,6 @@ export const updateProductOrder = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      product {
-        id
-        price
-        orders {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
     }
   }
 `;
@@ -183,8 +203,27 @@ export const deleteProductOrder = /* GraphQL */ `
       id
       product_id
       order_id
+      product {
+        id
+        flavor
+        shape
+        tier
+        eggless
+        fondant
+        topper
+        characters
+        description
+        allergies
+        price
+        orders {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
       order {
         id
+        email
         user
         date
         total
@@ -198,15 +237,6 @@ export const deleteProductOrder = /* GraphQL */ `
       }
       createdAt
       updatedAt
-      product {
-        id
-        price
-        orders {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
     }
   }
 `;
@@ -217,6 +247,7 @@ export const createOrder = /* GraphQL */ `
   ) {
     createOrder(input: $input, condition: $condition) {
       id
+      email
       user
       date
       total
@@ -244,6 +275,7 @@ export const updateOrder = /* GraphQL */ `
   ) {
     updateOrder(input: $input, condition: $condition) {
       id
+      email
       user
       date
       total
@@ -271,6 +303,7 @@ export const deleteOrder = /* GraphQL */ `
   ) {
     deleteOrder(input: $input, condition: $condition) {
       id
+      email
       user
       date
       total
