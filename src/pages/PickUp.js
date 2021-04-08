@@ -60,6 +60,17 @@ const PickUp = () => {
     setSelectedTime(time);
   };
 
+  const handleSubmit = () => {
+    var formatted_date = formatDate(document.getElementById("date-picker").value);
+    var formatted_time = formatTime(document.getElementById("time-picker").value);
+    products.forEach(product => {
+      if (product.id === id) {
+        addToCart({ ...product, id });
+      }
+    })
+    return history.push(`/cart/${id}/${formatted_date}/${formatted_time}`)
+  }
+
   return (
     <section className="pickUp">
       <div className="pickUp-content">
@@ -93,16 +104,7 @@ const PickUp = () => {
         <div className="pickUp-selections">
         </div>
 
-        <Button className="home-buttons" variant="btn btn-success" onClick={() =>{
-          products.forEach(product => {
-            if (product.id === id) {
-              addToCart({ ...product, id });
-              var formatted_date = formatDate(document.getElementById("date-picker").value)
-              var formatted_time = formatTime(document.getElementById("time-picker").value)
-              return history.push(`/cart/${id}/${formatted_date}/${formatted_time}`);
-            }
-          })
-        }}>Proceed to Checkout</Button>
+        <Button className="home-buttons" variant="btn btn-success" onClick={handleSubmit}>Proceed to Checkout</Button>
         
       </div>
     </section>
