@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { AmplifyAuthenticator } from '@aws-amplify/ui-react'
 import { API, graphqlOperation } from "aws-amplify"
 import { createProduct } from '../api/mutations'
 import { store } from 'react-notifications-component'
+import { CartContext } from "../context/cart"
 import FlavorDescription from '../components/Accordion/Descriptions/FlavorDescription'
 import ShapeDescription from '../components/Accordion/Descriptions/ShapeDescription'
 import TierTitle from '../components/Accordion/Descriptions/TierTitle'
@@ -44,6 +45,7 @@ function CreateNotification(title_string, message_string) {
 }
 
 const Order = () => {
+
     const FLAVORS = ['Strawberry', 'Blueberry', 'Mango', 'Pineapple', 'Black Forest', 'Butterscotch', 'Chocolate Ganache'];
 
     const rand = Math.random().toString(16).substr(2, 8); // 6de5ccda
@@ -57,6 +59,8 @@ const Order = () => {
         { width: 900, itemsToShow: 3 },
     ]
     
+    const { addToCart } = useContext(CartContext);
+
     function PickFlavor(e) {
         //Set Product Details
         setProductDetails({ ...productDetails, flavor: e.target.innerHTML })
@@ -236,9 +240,14 @@ const Order = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            if ((!productDetails.flavor) || (!productDetails.shape) || (!productDetails.tier)) return
-            await API.graphql(graphqlOperation(createProduct, { input: productDetails }))
-            return history.push(`/pickup/${productDetails.id}`)
+            if ((!productDetails.flavor) || (!productDetails.shape) || (!productDetails.tier)) {
+                return;
+            }
+            else {
+                await API.graphql(graphqlOperation(createProduct, { input: productDetails }))
+                addToCart(productDetails)
+                return history.push(`/pickup`);
+            }
         } catch (err) {
             console.log('error creating todo:', err)
         }
