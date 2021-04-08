@@ -13,10 +13,9 @@ Owner can:
 - Upload pictures of their products to Firebase Cloud Storage. (Gallery Page)
 - Manage orders and transactions via the [Stripe API](https://stripe.com/docs/api).
 
-## 3/27/2021 Progress Update: 
+## 4/7/2021 Progress Update: 
 
 - The base functionality is complete.
-- There is one bug: pick up page needs to be refreshed before product can be added to cart.
 
 ### Back End Tools & Services
 - AWS Amplify
@@ -40,8 +39,7 @@ Responsive pages:
 - Alternative payment options: pay with cash or with Zelle
 
 ### To Do:
-- Fix pick up page bug
-- Update user permissions (right now only Admin can place orders)
-- Update Firebase security rules (30 day client access expired)
+- Front end work for order confirmation + account registration pages
+- Confirmation email
 - Launch app
 - Begin extra features
