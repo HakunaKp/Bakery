@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import CheckoutForm from "../components/CheckoutForm";
 import { AmplifyAuthenticator } from '@aws-amplify/ui-react';
 import { loadStripe } from '@stripe/stripe-js';
@@ -22,4 +22,4 @@ const Checkout = () => {
     )
 }
 
-export default Checkout
+export default Checkout;

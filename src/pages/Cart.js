@@ -10,17 +10,17 @@ import history from '../components/History';
 const Cart = () => {
 
   const { date, time } = useParams();
-  const { cart, total, increaseAmount, decreaseAmount } = useContext(CartContext)
+  const { cart, total, increaseAmount, decreaseAmount } = useContext(CartContext);
 
   if (!cart.length) {
     return <h1>Empty Cart</h1>
   }
 
   function printTier(tier) {
-    if (tier === "square") return "(8\" x 8\") Square"
-    else if (tier === "quarter") return "(8\" x 12\") Quarter Sheet"
-    else if (tier === "half") return "(16\" x 24\") Half Sheet"
-    else return `${tier.substr(0, tier.length-2)}`
+    if (tier === "square") return "(8\" x 8\") Square";
+    else if (tier === "quarter") return "(8\" x 12\") Quarter Sheet";
+    else if (tier === "half") return "(16\" x 24\") Half Sheet";
+    else return `${tier.substr(0, tier.length-2)}`;
   }
 
   function printExtras(extra) {
@@ -96,6 +96,10 @@ const Cart = () => {
 
         <div>
           <h3>Total: ${total}.00</h3>
+        </div>
+
+        <div>
+          <button className="btn" onClick={() => history.push(`/order`)}>Add Another Cake to Order</button>
         </div>
 
         <div>

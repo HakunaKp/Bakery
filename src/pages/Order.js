@@ -1,29 +1,29 @@
-import React, { useContext, useState } from 'react'
-import { AmplifyAuthenticator } from '@aws-amplify/ui-react'
-import { API, graphqlOperation } from "aws-amplify"
-import { createProduct } from '../api/mutations'
-import { store } from 'react-notifications-component'
-import { CartContext } from "../context/cart"
-import FlavorDescription from '../components/Accordion/Descriptions/FlavorDescription'
-import ShapeDescription from '../components/Accordion/Descriptions/ShapeDescription'
-import TierTitle from '../components/Accordion/Descriptions/TierTitle'
-import TierDescription from '../components/Accordion/Descriptions/TierDescription'
-import ExtrasTitle from '../components/Accordion/Descriptions/ExtrasTitle'
-import ExtrasDescription from '../components/Accordion/Descriptions/ExtrasDescription'
-import DescriptionTitle from '../components/Accordion/Descriptions/DescriptionTitle'
-import DescriptionDescription from '../components/Accordion/Descriptions/DescriptionDescription'
-import AllergiesTitle from '../components/Accordion/Descriptions/AllergiesTitle'
-import AllergiesDescription from '../components/Accordion/Descriptions/AllergiesDescription'
-import Accordion from '../components/Accordion/Accordion'
-import Carousel from "react-elastic-carousel"
-import Item from "../components/Item"
-import Options from '../components/ToggleSwitch/Options'
-import OptionsShape from '../components/ToggleSwitch/OptionsShape'
-import ReactNotifications from 'react-notifications-component'
-import history from '../components/History'
-import 'react-notifications-component/dist/theme.css'
-import 'animate.css'
-import "../components/Accordion/Accordion.css"
+import React, { useContext, useState } from 'react';
+import { AmplifyAuthenticator } from '@aws-amplify/ui-react';
+import { API, graphqlOperation } from "aws-amplify";
+import { createProduct } from '../api/mutations';
+import { store } from 'react-notifications-component';
+import { CartContext } from '../context/cart';
+import FlavorDescription from '../components/Accordion/Descriptions/FlavorDescription';
+import ShapeDescription from '../components/Accordion/Descriptions/ShapeDescription';
+import TierTitle from '../components/Accordion/Descriptions/TierTitle';
+import TierDescription from '../components/Accordion/Descriptions/TierDescription';
+import ExtrasTitle from '../components/Accordion/Descriptions/ExtrasTitle';
+import ExtrasDescription from '../components/Accordion/Descriptions/ExtrasDescription';
+import DescriptionTitle from '../components/Accordion/Descriptions/DescriptionTitle';
+import DescriptionDescription from '../components/Accordion/Descriptions/DescriptionDescription';
+import AllergiesTitle from '../components/Accordion/Descriptions/AllergiesTitle';
+import AllergiesDescription from '../components/Accordion/Descriptions/AllergiesDescription';
+import Accordion from '../components/Accordion/Accordion';
+import Carousel from 'react-elastic-carousel';
+import Item from '../components/Item';
+import Options from '../components/ToggleSwitch/Options';
+import OptionsShape from '../components/ToggleSwitch/OptionsShape';
+import ReactNotifications from 'react-notifications-component';
+import history from '../components/History';
+import 'react-notifications-component/dist/theme.css';
+import 'animate.css';
+import '../components/Accordion/Accordion.css';
 
 var reviewReady = false;
 
@@ -51,22 +51,21 @@ const Order = () => {
     const rand = Math.random().toString(16).substr(2, 8); // 6de5ccda
 
     const [productDetails, setProductDetails] = useState({ id: rand, flavor: "", shape: "", tier: "", eggless: false, fondant: false, topper: false, 
-        characters: false, description: "", allergies: "", price: "0.00" })
+        characters: false, description: "", allergies: "", price: "0.00" });
 
     const breakPoints = [
         { width: 1, itemsToShow: 1 },
         { width: 300, itemsToShow: 2 },
         { width: 900, itemsToShow: 3 },
-    ]
+    ];
     
     const { addToCart } = useContext(CartContext);
 
     function PickFlavor(e) {
         //Set Product Details
-        setProductDetails({ ...productDetails, flavor: e.target.innerHTML })
+        setProductDetails({ ...productDetails, flavor: e.target.innerHTML });
         //Jump to PickShape
-        document.getElementById("pick-shape").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"})
-        return
+        return document.getElementById("pick-shape").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
     }
 
     function Flavor() {
@@ -75,13 +74,13 @@ const Order = () => {
             <h1>Select Flavor (Required)</h1>
             <Carousel breakPoints={breakPoints} fade="true" transition="5000">
             {FLAVORS.map((flavor) => {
-                if (flavor === 'Chocolate Ganache') return ( <Item className="Flavor" id='Chocolate-Ganache' onClick={(e) => PickFlavor(e)} >{flavor}</Item> )
-                if (flavor === 'Black Forest') return ( <Item className="Flavor" id='Black-Forest' onClick={(e) => PickFlavor(e)} >{flavor}</Item> )
-                return ( <Item className="Flavor" id={flavor} onClick={(e) => PickFlavor(e)} >{flavor}</Item> )
+                if (flavor === 'Chocolate Ganache') return <Item className="Flavor" id='Chocolate-Ganache' onClick={(e) => PickFlavor(e)} >{flavor}</Item>;
+                if (flavor === 'Black Forest') return <Item className="Flavor" id='Black-Forest' onClick={(e) => PickFlavor(e)} >{flavor}</Item>;
+                return <Item className="Flavor" id={flavor} onClick={(e) => PickFlavor(e)} >{flavor}</Item>;
             })}
             </Carousel>
         </div>
-        )
+        );
     }
 
     function Shape() {
@@ -90,35 +89,37 @@ const Order = () => {
                 <h1>Select Shape (Required)</h1>
                 <OptionsShape render/>
             </div>
-        )
+        );
     }
 
     function SaveForm(extrasReady){
         if (!productDetails.flavor) return CreateNotification("Error", "Flavor is Required!");
         
-        if (extrasReady && document.getElementById("description-box") && document.getElementById("allergies-box") && document.getElementsByClassName("tier-button")) {
-            var tiers = document.getElementsByClassName("tier-button")
-            var tierSelected = false
-            var has_eggs = ((document.getElementById("Eggless").className) === "extra-choices text-custom")
-            var has_fondant = ((document.getElementById("Fondant").className) === "extra-choices text-custom")
-            var has_topper = ((document.getElementById("Topper").className) === "extra-choices text-custom")
-            var has_characters = ((document.getElementById("Characters").className) === "extra-choices text-custom")          
+        if (extrasReady && document.getElementById("description-box") && document.getElementById("allergies-box") && document.getElementsByClassName("tier-button"))
+        {
+            var tiers = document.getElementsByClassName("tier-button");
+            var tierSelected = false;
+            var has_eggs = ((document.getElementById("Eggless").className) === "extra-choices text-custom");
+            var has_fondant = ((document.getElementById("Fondant").className) === "extra-choices text-custom");
+            var has_topper = ((document.getElementById("Topper").className) === "extra-choices text-custom");
+            var has_characters = ((document.getElementById("Characters").className) === "extra-choices text-custom");       
 
-            for (var i = 0; i < tiers.length; i++) {
+            for (var i = 0; i < tiers.length; i++) 
+            {
                 if (tiers[i].checked) {
                     setProductDetails({...productDetails, tier: tiers[i].id, eggless: has_eggs, fondant: has_fondant, topper: has_topper, 
                         characters: has_characters, description: document.getElementById("description-box").value, 
                         allergies: document.getElementById("allergies-box").value, price: tiers[i].value 
-                    })
-                    tierSelected = true
+                    });
+                    tierSelected = true;
                 }
             }
 
-            if (!tierSelected && !productDetails.tier) return CreateNotification("Error", "Tier is required!")
+            if (!tierSelected && !productDetails.tier) return CreateNotification("Error", "Tier is required!");
 
             // Jump to review
             if (document.getElementById("review-header")) document.getElementById("review-header").scrollIntoView({behavior: "smooth", block: "start", inline: "start"}); 
-            extrasReady = false
+            extrasReady = false;
         }
     }
 
@@ -134,7 +135,7 @@ const Order = () => {
                     id="description-box"
                 />
             </div>
-        )
+        );
     }
 
     function Allergies() {
@@ -150,7 +151,7 @@ const Order = () => {
                 />
                 <input type="button" value="Save &amp; Review" onClick={SaveChoices} />
             </div>
-        )
+        );
     }
 
     function Review() {
@@ -190,37 +191,37 @@ const Order = () => {
                         value="Date &amp; Time Selection" 
                     />
                 </div>
-            )
-        } else return <></>
+            );
+        } else return <></>;
     }
 
     // Goes to review
     function SaveChoices() {
-        SaveForm(true)
-        reviewReady = true
+        SaveForm(true);
+        reviewReady = true;
         if (document.getElementById("review-selections")){
-            document.getElementById("review-selections").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"})
+            document.getElementById("review-selections").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
         }
-        return
+        return;
     }
 
     function SaveShape(){
         if (document.getElementById("Circle") && document.getElementById("Rectangle") && document.getElementById("Heart")){
             if (document.getElementById("Circle").className === "switch-toggle switch-toggle--on") {
-                return setProductDetails({...productDetails, shape: "Circle"})
+                return setProductDetails({...productDetails, shape: "Circle"});
             }
             if (document.getElementById("Rectangle").className === "switch-toggle switch-toggle--on") {
-                return setProductDetails({ ...productDetails, shape: "Rectangle" })
+                return setProductDetails({ ...productDetails, shape: "Rectangle" });
             }
             if (document.getElementById("Heart").className === "switch-toggle switch-toggle--on") {
-                return setProductDetails({ ...productDetails, shape: "Heart" })
+                return setProductDetails({ ...productDetails, shape: "Heart" });
             }
         }
-        return
+        return;
     }
 
     function Optional(){
-        SaveShape()
+        SaveShape();
         return (
             <div className="optional-form" id="pick-option">
                 <h1 id="pick-extras">Extras (Optional)</h1>
@@ -234,11 +235,11 @@ const Order = () => {
                     <h3>Character: Non-edible figurine and collectible characters.</h3>
                 </div>
             </div>
-        )
+        );
     }
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
         try {
             if ((!productDetails.flavor) || (!productDetails.shape) || (!productDetails.tier)) {
                 return;
@@ -249,7 +250,7 @@ const Order = () => {
                 return history.push(`/pickup`);
             }
         } catch (err) {
-            console.log('error creating todo:', err)
+            console.log('error creating todo:', err);
         }
     }
 
@@ -271,7 +272,7 @@ const Order = () => {
                 </AmplifyAuthenticator>
             </section>
         </div>
-    )
+    );
 }
 
-export default Order
+export default Order;
