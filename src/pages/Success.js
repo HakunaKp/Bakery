@@ -1,15 +1,10 @@
 import React from 'react';
-import { useParams } from "react-router-dom";
 
 const Success = () => {
-
-    const { date, time } = useParams();
-
     return (
         <div>
-            <h2>Success! Your order has been confirmed.</h2>
-            <p>Pick Up Date: {date}</p>
-            <p>Pick Up Time: {time}</p>
+            <h1>Success! Your order has been confirmed.</h1>
+            <h2>A confirmation email has been sent to you with details of your order.</h2>
         </div>
     );
 }

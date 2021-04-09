@@ -3,14 +3,6 @@ import { API, graphqlOperation } from "aws-amplify";
 import { v4 as uuidv4 } from "uuid";
 import { listProducts } from "../api/queries";
 import { processOrder } from "../api/mutations";
-import { Auth } from 'aws-amplify';
-
-var customer_email, customer_username;
-
-Auth.currentAuthenticatedUser().then((user) => {
-  customer_username = user.username;
-  customer_email = user.attributes.email;
-});
 
 const ProductContext = React.createContext();
 
@@ -26,16 +18,15 @@ const ProductProvider = ({ children }) => {
 
     const payload = {
       id: uuidv4(),
-      username: customer_username,
-      email: customer_email,
       ...orderDetails
-    };
+    }
+
     try {
       await API.graphql(graphqlOperation(processOrder, { input: payload }));
       console.log("Order is successful");
     } catch (err) {
-      console.log(payload)
-      console.log(err)
+      console.log(payload);
+      console.log(err);
     }
   };
 

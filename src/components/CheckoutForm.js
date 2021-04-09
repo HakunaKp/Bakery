@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { ProductContext } from "../context/products";
 import { CartContext } from "../context/cart";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import { AmplifyAuthenticator } from '@aws-amplify/ui-react';
+import { Auth } from 'aws-amplify';
 import history from '../components/History';
 
 const CARD_ELEMENT_OPTIONS = {
@@ -23,13 +25,22 @@ const CARD_ELEMENT_OPTIONS = {
   }
 };
 
+var customer_username;
+var customer_email;
+
 const CheckoutForm = () => {
   const { cart, total, clearCart } = useContext(CartContext);
   const { checkout } = useContext(ProductContext);
 
+  Auth.currentAuthenticatedUser().then((user) => {
+    customer_username = user.username;
+    customer_email = user.attributes.email;
+  })
+
   // set pickupdate and time from url
   const { date, time } = useParams();
-  const [orderDetails, setOrderDetails] = useState({ cart, total, pickupDate: date, pickupTime: time, token: null });
+
+  const [orderDetails, setOrderDetails] = useState({ cart, username: customer_username, email: customer_email, total, pickupDate: date, pickupTime: time, token: null });
 
   const [error, setError] = useState(null);
   const stripe = useStripe();
@@ -54,8 +65,10 @@ const CheckoutForm = () => {
   // Handle form submission.
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     const card = elements.getElement(CardElement);
     const result = await stripe.createToken(card);
+
     if (result.error) {
       // Inform the user if there was an error.
       setError(result.error.message);
@@ -63,26 +76,28 @@ const CheckoutForm = () => {
       setError(null);
       // Send the token to your server.
       const token = result.token;
-      setOrderDetails({ ...orderDetails, token: token.id });
-      history.push(`/success/${orderDetails.pickupDate}/${orderDetails.pickupTime}`);
+      setOrderDetails({ ...orderDetails, username: customer_username, email: customer_email, token: token.id });
+      history.push(`/success`);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="checkout-form">
-        <div className="stripe-section">
-          <label htmlFor="stripe-element"> Credit or debit card </label>
-          <CardElement id="stripe-element" options={CARD_ELEMENT_OPTIONS} onChange={handleChange} />
+    <AmplifyAuthenticator>
+      <form onSubmit={handleSubmit}>
+        <div className="checkout-form">
+          <div className="stripe-section">
+            <label htmlFor="stripe-element"> Credit or debit card </label>
+            <CardElement id="stripe-element" options={CARD_ELEMENT_OPTIONS} onChange={handleChange} />
+          </div>
+          <div className="card-errors" role="alert">
+            {error}
+          </div>
         </div>
-        <div className="card-errors" role="alert">
-          {error}
-        </div>
-      </div>
-      <button type="submit" className="btn">
-        Submit Payment
-      </button>
-    </form>
+        <button type="submit" className="btn">
+          Submit Payment
+        </button>
+      </form>
+    </AmplifyAuthenticator>
   );
 };
 

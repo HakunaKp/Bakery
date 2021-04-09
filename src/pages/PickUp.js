@@ -1,8 +1,6 @@
-import React, { useContext, useState } from "react";
-import { useParams } from "react-router-dom";
-import { ProductContext } from "../context/products";
-import { CartContext } from "../context/cart";
+import React, { useState } from "react";
 import { Button } from 'react-bootstrap';
+import { AmplifyAuthenticator } from '@aws-amplify/ui-react';
 import history from '../components/History';
 
 import 'date-fns';
@@ -46,10 +44,7 @@ function formatTime(time) {
 }
 
 const PickUp = () => {
-  const { id } = useParams();
-  const { products } = useContext(ProductContext);
-  const { addToCart } = useContext(CartContext);
-  
+
   const [selectedDate, setSelectedDate] = useState(new Date());
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -60,54 +55,52 @@ const PickUp = () => {
     setSelectedTime(time);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault()
     var formatted_date = formatDate(document.getElementById("date-picker").value);
     var formatted_time = formatTime(document.getElementById("time-picker").value);
-    products.forEach(product => {
-      if (product.id === id) {
-        addToCart({ ...product, id });
-      }
-    })
-    return history.push(`/cart/${id}/${formatted_date}/${formatted_time}`)
+    return history.push(`/cart/${formatted_date}/${formatted_time}`);
   }
 
   return (
-    <section className="pickUp">
-      <div className="pickUp-content">
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+    <AmplifyAuthenticator>
+      <section className="pickUp">
+        <div className="pickUp-content">
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <div className="pickUp-selections">
+
+              <h1>Select Pick Up Date &amp; Time</h1>
+
+              <KeyboardDatePicker
+                label="Date Selection"
+                format="MM/dd/yyyy"
+                id="date-picker"
+                style={{width:"100%"}} 
+                onChange={handleDateChange}
+                value={selectedDate}
+                shouldDisableDate={checkAvailability}
+              />
+            </div>
+            
+            <div className="pickUp-selections">
+              <KeyboardTimePicker
+              id="time-picker"
+              label="Time Selection"
+              style={{width:"100%"}}
+              value={selectedTime}
+              onChange={handleTimeChange}
+              />
+            </div>
+          </MuiPickersUtilsProvider>
+
           <div className="pickUp-selections">
-
-            <h1>Select Pick Up Date &amp; Time</h1>
-
-            <KeyboardDatePicker
-              label="Date Selection"
-              format="MM/dd/yyyy"
-              id="date-picker"
-              style={{width:"100%"}} 
-              onChange={handleDateChange}
-              value={selectedDate}
-              shouldDisableDate={checkAvailability}
-            />
           </div>
+
+          <Button className="home-buttons" variant="btn btn-success" onClick={handleSubmit}>Proceed to Checkout</Button>
           
-          <div className="pickUp-selections">
-            <KeyboardTimePicker
-            id="time-picker"
-            label="Time Selection"
-            style={{width:"100%"}}
-            value={selectedTime}
-            onChange={handleTimeChange}
-            />
-          </div>
-        </MuiPickersUtilsProvider>
-
-        <div className="pickUp-selections">
         </div>
-
-        <Button className="home-buttons" variant="btn btn-success" onClick={handleSubmit}>Proceed to Checkout</Button>
-        
-      </div>
-    </section>
+      </section>
+    </AmplifyAuthenticator>
   );
 };
 
