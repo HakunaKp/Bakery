@@ -31,8 +31,9 @@
   .nav-menu.active {
     left: 0;
     transition: 350ms;
-    background: black;
+    background: rgb(10, 59, 111);
     z-index: 1;
+    opacity: 100%;
   }
   
   .nav-text {
