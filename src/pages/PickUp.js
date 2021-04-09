@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Button } from 'react-bootstrap';
 import { AmplifyAuthenticator } from '@aws-amplify/ui-react';
 import history from '../components/History';
-
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import {
@@ -11,37 +10,43 @@ import {
   KeyboardTimePicker
 } from '@material-ui/pickers';
 
+// Update this function to change pick up date availability
 function checkAvailability(date) {
+  if (date) return false;
   // Return false if Saturday or Sunday
-  return date.getDay() === 0 || date.getDay() === 6;
+//  return date.getDay() === 0 || date.getDay() === 6;
 }
 
 function formatDate(date) {
-  var month = date.substring(0, 2)
-  var day = date.substring(3, 5)
+  var month = date.substring(0, 2);
+  var day = date.substring(3, 5);
 
-  if (month === "01") return ("January" + day)
-  if (month === "02") return ("February" + day)
-  if (month === "03") return ("March" + day)
-  if (month === "04") return ("April" + day)
-  if (month === "05") return ("May" + day)
-  if (month === "06") return ("June" + day)
-  if (month === "07") return ("July" + day)
-  if (month === "08") return ("August" + day)
-  if (month === "09") return ("September" + day)
-  if (month === "10") return ("October" + day)
-  if (month === "11") return ("November" + day)
-  if (month === "12") return ("December" + day)
+  if (month === "01") return ("January" + day);
+  if (month === "02") return ("February" + day);
+  if (month === "03") return ("March" + day);
+  if (month === "04") return ("April" + day);
+  if (month === "05") return ("May" + day);
+  if (month === "06") return ("June" + day);
+  if (month === "07") return ("July" + day);
+  if (month === "08") return ("August" + day);
+  if (month === "09") return ("September" + day);
+  if (month === "10") return ("October" + day);
+  if (month === "11") return ("November" + day);
+  if (month === "12") return ("December" + day);
 }
 
 // remove all whitespace and : characters from time before routing
 function formatTime(time) {
-  var formattedTime = ""
+  var formattedTime = "";
   for (let i in time) {
     if (time[i] !== ":" && time[i] !== " ") formattedTime += time[i];
   }
-  return formattedTime
+  return formattedTime;
 }
+
+function renderSelections(date, time) {
+  return <h2>Selected Date: {date} | Selected Time: {time}</h2>;
+};
 
 const PickUp = () => {
 
@@ -70,6 +75,12 @@ const PickUp = () => {
             <div className="pickUp-selections">
 
               <h1>Select Pick Up Date &amp; Time</h1>
+              <br></br>
+              <h4>Press the enter key with the pop-up open to confirm your choice.</h4>
+              <h4>Please note some dates may be unavailable.</h4>
+              <h4>Order availability is updated every Sunday at 2PM EST.</h4>
+              <br></br>
+              <br></br>
 
               <KeyboardDatePicker
                 label="Date Selection"
@@ -91,10 +102,11 @@ const PickUp = () => {
               onChange={handleTimeChange}
               />
             </div>
-          </MuiPickersUtilsProvider>
 
-          <div className="pickUp-selections">
-          </div>
+            <renderSelections date={selectedDate} time={selectedTime}/>
+            <br></br>
+
+          </MuiPickersUtilsProvider>
 
           <Button className="home-buttons" variant="btn btn-success" onClick={handleSubmit}>Proceed to Checkout</Button>
           
@@ -102,6 +114,6 @@ const PickUp = () => {
       </section>
     </AmplifyAuthenticator>
   );
-};
+}
 
 export default PickUp;
