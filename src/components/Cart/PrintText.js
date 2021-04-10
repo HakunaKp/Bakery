@@ -1,3 +1,5 @@
+import React from 'react';
+
 export default function printText(description, allergies){
     if (description && allergies) {
         return(
