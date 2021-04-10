@@ -1,5 +1,5 @@
 import React from 'react';
-import CheckoutForm from "../components/CheckoutForm";
+import CheckoutForm from "../components/Checkout/CheckoutForm";
 import { AmplifyAuthenticator } from '@aws-amplify/ui-react';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';

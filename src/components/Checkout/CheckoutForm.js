@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { ProductContext } from "../context/products";
-import { CartContext } from "../context/cart";
+import { ProductContext } from "../../context/products";
+import { CartContext } from "../../context/cart";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { AmplifyAuthenticator } from '@aws-amplify/ui-react';
 import { Auth } from 'aws-amplify';
-import history from '../components/History';
+import history from '../History';
+import emailjs from 'emailjs-com';
+import formatDate from './FormatDate';
+import formatTime from './FormatTime';
 
 const CARD_ELEMENT_OPTIONS = {
   style: {
@@ -77,7 +80,16 @@ const CheckoutForm = () => {
       // Send the token to your server.
       const token = result.token;
       setOrderDetails({ ...orderDetails, username: customer_username, email: customer_email, token: token.id });
-      history.push(`/success`);
+      emailjs.init("user_HZRLM4jHPO8XyqGT96zFF");
+      emailjs.send("service_cn2ng8a","template_upcguss",{
+        receipient_email: customer_email,
+        pickupDate: formatDate(date),
+        pickupTime: formatTime(time),
+        flavor: orderDetails.cart[0].flavor,
+        shape: orderDetails.cart[0].shape,
+        tier: orderDetails.cart[0].tier,
+      });
+      history.push('/success');
     }
   };
 
