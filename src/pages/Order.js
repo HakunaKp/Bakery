@@ -2,8 +2,15 @@ import React, { useContext, useState } from 'react';
 import { AmplifyAuthenticator } from '@aws-amplify/ui-react';
 import { API, graphqlOperation } from "aws-amplify";
 import { createProduct } from '../api/mutations';
-import { store } from 'react-notifications-component';
 import { CartContext } from '../context/cart';
+
+import ReactNotifications from 'react-notifications-component';
+import CreateNotification from '../components/Notification';
+
+import Carousel from 'react-elastic-carousel';
+import Item from '../components/Item';
+
+import Accordion from '../components/Accordion/Accordion';
 import FlavorDescription from '../components/Accordion/Descriptions/FlavorDescription';
 import ShapeDescription from '../components/Accordion/Descriptions/ShapeDescription';
 import TierTitle from '../components/Accordion/Descriptions/TierTitle';
@@ -14,35 +21,15 @@ import DescriptionTitle from '../components/Accordion/Descriptions/DescriptionTi
 import DescriptionDescription from '../components/Accordion/Descriptions/DescriptionDescription';
 import AllergiesTitle from '../components/Accordion/Descriptions/AllergiesTitle';
 import AllergiesDescription from '../components/Accordion/Descriptions/AllergiesDescription';
-import Accordion from '../components/Accordion/Accordion';
-import Carousel from 'react-elastic-carousel';
-import Item from '../components/Item';
+
 import Options from '../components/ToggleSwitch/Options';
 import OptionsShape from '../components/ToggleSwitch/OptionsShape';
-import ReactNotifications from 'react-notifications-component';
 import history from '../components/History';
 import 'react-notifications-component/dist/theme.css';
 import 'animate.css';
 import '../components/Accordion/Accordion.css';
 
 var reviewReady = false;
-
-// Function to Create notification
-function CreateNotification(title_string, message_string) {
-    store.addNotification({
-        title: title_string,
-        message: message_string,
-        type: "default",                         // 'default', 'success', 'info', 'warning'
-        container: "top-full",                // where to position the notifications
-        insert: "top",
-        animationIn: ["animated", "fadeIn"],     // animate.css classes that's applied
-        animationOut: ["animated", "fadeOut"],   // animate.css classes that's applied
-        dismiss: {
-        duration: 2250,
-        showIcon: true
-        },
-    })
-}
 
 const Order = () => {
 
