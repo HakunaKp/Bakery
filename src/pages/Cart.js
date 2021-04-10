@@ -6,6 +6,9 @@ import { FiChevronDown } from "react-icons/fi";
 import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import { AmplifyAuthenticator } from '@aws-amplify/ui-react';
 import history from '../components/History';
+import printTier from '../components/Cart/PrintTier';
+import printExtras from '../components/Cart/PrintExtras';
+import printText from '../components/Cart/PrintText';
 
 const Cart = () => {
 
@@ -14,42 +17,6 @@ const Cart = () => {
 
   if (!cart.length) {
     return <h1>Empty Cart</h1>
-  }
-
-  function printTier(tier) {
-    if (tier === "square") return "(8\" x 8\") Square";
-    else if (tier === "quarter") return "(8\" x 12\") Quarter Sheet";
-    else if (tier === "half") return "(16\" x 24\") Half Sheet";
-    else return `${tier.substr(0, tier.length-2)}`;
-  }
-
-  function printExtras(extra) {
-    if (extra) return "Yes";
-    return "No";
-  }
-
-  function printText(description, allergies){
-  
-    if (description && allergies) {
-      return(
-        <div className="cart-text">
-          <h3>Cake Description: {description}</h3>
-          <h3>Allergies: {allergies}</h3>
-        </div>
-        );
-    } else if (description && !allergies){
-      return(
-        <div className="cart-text">
-          <h3>Cake Description: {description}</h3>
-        </div>
-      );
-    } else if (allergies){
-      return(
-      <div className="cart-text">
-        <h3>Noted Allergies: {allergies}</h3>
-      </div>
-      )
-    } else return;
   }
 
   return (
