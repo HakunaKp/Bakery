@@ -232,9 +232,10 @@ const Order = () => {
                 return;
             }
             else {
-                await API.graphql(graphqlOperation(createProduct, { input: productDetails }))
-                addToCart(productDetails)
-                return history.push(`/pickup`);
+                await API.graphql(graphqlOperation(createProduct, { input: productDetails }));
+                addToCart(productDetails);
+                reviewReady = false;
+                return history.push('/pickup');
             }
         } catch (err) {
             console.log('error creating todo:', err);
