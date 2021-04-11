@@ -4,6 +4,6 @@ export default function formatTime(time) {
     var minutes = time.substring(2, 4);
     var meridium = time.substring(4, 6);
 
-    var formattedTime = hours + ":" + minutes + meridium ;
+    var formattedTime = hours + ":" + minutes + " " + meridium ;
     return formattedTime;
 }

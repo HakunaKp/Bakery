@@ -1,5 +1,5 @@
 .navbar {
-    background-color: #062614;
+    background-color: #062614 !important;
     height: 80px;
     display: flex;
     justify-content: flex-start;
@@ -16,7 +16,7 @@
   }
 
   .nav-menu {
-    background-color: #060b26;
+    background-color: #060b26 !important;
     width: 250px;
     height: 100vh;
     display: flex;
@@ -31,7 +31,7 @@
   .nav-menu.active {
     left: 0;
     transition: 350ms;
-    background: rgb(10, 59, 111);
+    background: rgb(10, 59, 111) !important;
     z-index: 1;
     opacity: 100%;
   }
@@ -47,7 +47,7 @@
 
   .nav-text:hover {
     cursor: pointer;
-    background-color: #4d568d;
+    background-color: #4d568d !important;
     scale:1.035;
   }
   
@@ -64,7 +64,7 @@
   }
   
   .nav-text a:hover {
-    background-color: #1a83ff;
+    background-color: #1a83ff !important;
   }
   
   .nav-menu-items {
@@ -72,7 +72,7 @@
   }
   
   .navbar-toggle {
-    background-color: #060b26;
+    background-color: #060b26 !important;
     width: 100%;
     height: 80px;
     display: flex;
