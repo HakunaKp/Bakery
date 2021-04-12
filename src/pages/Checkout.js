@@ -15,6 +15,10 @@ const Checkout = () => {
                         <br></br>
                         <h2>Time to Checkout?</h2>
                         <CheckoutForm />
+                        <br></br>
+                        <br></br>
+                        <h3>Be sure to save the PDF invoice of your order.</h3>
+                        <h3>It will be downloaded after successful processing of your payment.</h3>
                     </section>
                 </Elements>
             </AmplifyAuthenticator>

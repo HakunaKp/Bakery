@@ -5,10 +5,11 @@ import { FiChevronUp } from "react-icons/fi";
 import { FiChevronDown } from "react-icons/fi";
 import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import { AmplifyAuthenticator } from '@aws-amplify/ui-react';
+import { Tooltip } from '@varld/popover';
 import history from '../components/History';
 import printTier from '../components/Cart/PrintTier';
 import printExtras from '../components/Cart/PrintExtras';
-import printText from '../components/Cart/PrintText';
+import FlavorDescription from '../components/Accordion/Descriptions/FlavorDescription';
 
 const Cart = () => {
 
@@ -31,35 +32,49 @@ const Cart = () => {
                 <Th className="cart-theader">Shape</Th>
                 <Th className="cart-theader">Tier</Th>
                 <Th className="cart-theader">Extras</Th>
-                <Th className="cart-theader">Price</Th>
-                <Th className="cart-theader">Quantity</Th>
+                <Th className="cart-theader">Notes</Th>
+                <Th className="cart-theader">Price</Th>  
+                <Th className="cart-theader">Quantity</Th>             
               </Tr>
             </Thead>
             <Tbody>
-            {cart.map(({ id, flavor, shape, tier, eggless, fondant, topper, characters, price, amount }) => (
+            {cart.map(({ id, flavor, shape, tier, eggless, fondant, topper, characters, price, amount, description, allergies }) => (
               <Tr className="cart-tablerows" key={id}>
-                <Td className="cart-tablecells">{flavor}</Td>
+                <Td className="cart-tablecells">
+                  <Tooltip content={FlavorDescription(flavor)}>
+                    {flavor}
+                  </Tooltip>
+                </Td>
                 <Td className="cart-tablecells">{shape}</Td>
                 <Td className="cart-tablecells">{printTier(tier)}</Td>
                 <Td className="cart-tablecells">
                   Eggless: {printExtras(eggless)}<br></br>
                   Fondant: {printExtras(fondant)}<br></br>
                   Topper: {printExtras(topper)}<br></br>
-                  Characters: {printExtras(characters)}<br></br>
+                  Character: {printExtras(characters)}<br></br>
                 </Td>
-                <Td>{price}</Td>
+
+                <Td>              
+                  <Tooltip content={description}>
+                    Description
+                  </Tooltip>
+                  <Tooltip content={allergies}>
+                    Allergies
+                  </Tooltip>
+                </Td>
+
+                <Td>${price}</Td>
                 <Td>
                     <button onClick={() => increaseAmount(id)}><FiChevronUp /></button>
                     <p>{amount}</p>
                     <button onClick={() => decreaseAmount(id, amount)}><FiChevronDown /></button>
                 </Td>
+
               </Tr>
-              ))}
+            ))}
             </Tbody>
           </Table>
         </div>
-
-        {printText(cart[0].description, cart[0].allergies)}
 
         <div>
           <h3>Total: ${total}.00</h3>

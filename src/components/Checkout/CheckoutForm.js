@@ -7,8 +7,12 @@ import { AmplifyAuthenticator } from '@aws-amplify/ui-react';
 import { Auth } from 'aws-amplify';
 import history from '../History';
 import emailjs from 'emailjs-com';
+import jsPDF from 'jspdf';
+import 'jspdf-autotable';
 import formatDate from './FormatDate';
 import formatTime from './FormatTime';
+import formatProducts from './FormatProducts';
+import generateInvoiceTable from './GenerateInvoice';
 
 const CARD_ELEMENT_OPTIONS = {
   style: {
@@ -72,6 +76,11 @@ const CheckoutForm = () => {
     const card = elements.getElement(CardElement);
     const result = await stripe.createToken(card);
 
+    const products = orderDetails.cart.map(formatProducts);
+    const doc = new jsPDF();
+
+    products.forEach(product => generateInvoiceTable(product, doc));
+
     if (result.error) {
       // Inform the user if there was an error.
       setError(result.error.message);
@@ -80,14 +89,13 @@ const CheckoutForm = () => {
       // Send the token to your server.
       const token = result.token;
       setOrderDetails({ ...orderDetails, username: customer_username, email: customer_email, token: token.id });
+      doc.save('Order Invoice - Customer Copy.pdf')
       emailjs.init("user_HZRLM4jHPO8XyqGT96zFF");
       emailjs.send("service_cn2ng8a","template_upcguss",{
         receipient_email: customer_email,
         pickupDate: formatDate(date),
         pickupTime: formatTime(time),
-        flavor: orderDetails.cart[0].flavor,
-        shape: orderDetails.cart[0].shape,
-        tier: orderDetails.cart[0].tier,
+        total: orderDetails.total
       });
       history.push('/success');
     }
