@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { SectionTilesProps } from '../../utils/SectionProps';
 import SectionHeader from './partials/SectionHeader';
-import Gallery from '.././gallery/Gallery';
+import Gallery from '../gallery/Gallery';
 
 const propTypes = {
   ...SectionTilesProps.types
