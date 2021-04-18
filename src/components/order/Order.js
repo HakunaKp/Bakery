@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { AmplifyAuthenticator } from '@aws-amplify/ui-react';
 import { API, graphqlOperation } from "aws-amplify";
 import { createProduct } from '../../api/mutations';
@@ -33,10 +33,19 @@ import './orderstyles.css'
 
 import GenericSection from '.././sections/GenericSection';
 
-var reviewReady = false;
+var review_ready = false;
 
 const Order = () => {
-      
+
+    const [shapeState, setShapeState] = useState(false);
+    const shapeRef = React.useRef();
+    useEffect(() => {
+        if (shapeState && shapeRef.current) {
+          shapeRef.current.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+          setShapeState(false);
+        }
+    }, [shapeState]);
+
     const history = useHistory();
 
     const FLAVORS = ['Strawberry', 'Blueberry', 'Mango', 'Pineapple', 'Black Forest', 'Butterscotch', 'Chocolate Ganache'];
@@ -62,36 +71,39 @@ const Order = () => {
         //Set Product Details
         setProductDetails({ ...productDetails, flavor: e.target.innerHTML });
         CreateNotification("Saved Flavor", "Flavor - " + e.target.id);
+        setShapeState(true);
         return;
     }
 
     function Flavor() {
         return (
-        <div className="flavor-form">
-            <h2 class="mt-0 mb-16">Flavor (Required)</h2>
-            <p class="m-0">Select from seven of our most popular flavors.</p>
-            <br></br>
-            <Carousel breakPoints={breakPoints} fade="true" transition="5000">
-            {FLAVORS.map((flavor) => {
-                if (flavor === 'Chocolate Ganache') return <Item className="Flavor" id='Chocolate-Ganache' onClick={(e) => PickFlavor(e)} >{flavor}</Item>;
-                if (flavor === 'Black Forest') return <Item className="Flavor" id='Black-Forest' onClick={(e) => PickFlavor(e)} >{flavor}</Item>;
-                return <Item className="Flavor" id={flavor} onClick={(e) => PickFlavor(e)} >{flavor}</Item>;
-            })}
-            </Carousel>
-            <br></br>
-        </div>
+            <GenericSection topDivider className="center-content">
+                <div className="flavor-form">
+                    <h2 class="mt-0 mb-16">Flavor (Required)</h2>
+                    <p class="m-0">Select from seven of our most popular flavors.</p>
+                    <br></br>
+                    <Carousel breakPoints={breakPoints} fade="true" transition="5000">
+                    {FLAVORS.map((flavor) => {
+                        if (flavor === 'Chocolate Ganache') return <Item className="Flavor" id='Chocolate-Ganache' onClick={(e) => PickFlavor(e)} >{flavor}</Item>;
+                        if (flavor === 'Black Forest') return <Item className="Flavor" id='Black-Forest' onClick={(e) => PickFlavor(e)} >{flavor}</Item>;
+                        return <Item className="Flavor" id={flavor} onClick={(e) => PickFlavor(e)} >{flavor}</Item>;
+                    })}
+                    </Carousel>
+                </div>
+            </GenericSection>
         );
     }
 
     function Shape() {
         return (
-            <div className="shape-form" id="pick-shape">
-                <h2 class="mt-0 mb-16">Shape (Required)</h2>
-                <p class="m-0">Select from circle, square or rectangle, and heart options.</p>
-                <br></br>
-                <OptionsShape render/>
-                <br></br>
-            </div>
+            <GenericSection topDivider className="center-content">
+                <div className="shape-form" id="pick-shape" ref={shapeRef}>
+                    <h2 class="mt-0 mb-16">Shape (Required)</h2>
+                    <p class="m-0">Select from circle, square or rectangle, and heart options.</p>
+                    <br></br>
+                    <OptionsShape render/>
+                </div>
+            </GenericSection >
         );
     }
 
@@ -126,44 +138,47 @@ const Order = () => {
 
     function Description() {
         return (
-            <div className="description-form">
-                <h2 class="mt-0 mb-16">Description (Optional)</h2>
-                <textarea 
-                    type="text" 
-                    rows="7" 
-                    placeholder="- Theme&#10;- Color Choices&#10;- Written Messages&#10;- Fondant Details&#10;- Desired Toppers&#10;- Desired Characters&#10;- Etc."
-                    name="description"
-                    id="description-box"
-                />
-                <br></br>
-                <br></br>
-            </div>
+            <GenericSection topDivider className="center-content">
+                <div className="description-form">
+                    <h2 class="mt-0 mb-16">Description (Optional)</h2>
+                    <textarea 
+                        type="text" 
+                        rows="7" 
+                        placeholder="- Theme&#10;- Color Choices&#10;- Written Messages&#10;- Fondant Details&#10;- Desired Toppers&#10;- Desired Characters&#10;- Etc."
+                        name="description"
+                        id="description-box"
+                    />
+                </div>
+            </GenericSection>
         );
     }
 
     function Allergies() {
         return (
             <div>
-                <div className="allergies-form">
-                    <h2 class="mt-0 mb-16">Allergies (Optional)</h2>
-                    <textarea 
-                        type="text" 
-                        rows="3" 
-                        placeholder="Please list any allergies or dietary restrictions (Leave blank if not applicable)"
-                        name="allergies"
-                        id="allergies-box"
-                    />
-                </div>
-                <br></br>
-                <Button tag="a" color="secondary" onClick={SaveChoices} wideMobile>
-                    Save Selections
-                </Button>
+                <GenericSection topDivider className="center-content">
+                    <div className="allergies-form">
+                        <h2 class="mt-0 mb-16">Allergies (Optional)</h2>
+                        <textarea 
+                            type="text" 
+                            rows="3" 
+                            placeholder="Please list any allergies or dietary restrictions (Leave blank if not applicable)"
+                            name="allergies"
+                            id="allergies-box"
+                        />
+                    </div>
+                </GenericSection>
+                <GenericSection topDivider className="center-content">
+                    <Button tag="a" color="secondary" onClick={SaveChoices} wideMobile>
+                        Save Selections
+                    </Button>
+                </GenericSection>
             </div>
         );
     }
 
     function Review() {
-        if (reviewReady) {
+        if (review_ready) {
             return(
                 <GenericSection topDivider className="center-content">
                     <div id="review-selections" className="container-xs">
@@ -200,7 +215,7 @@ const Order = () => {
     // Goes to review
     function SaveChoices() {
         SaveForm(true);
-        reviewReady = true;
+        review_ready = true;
         return;
     }
 
@@ -222,17 +237,18 @@ const Order = () => {
     function Optional(){
         SaveShape();
         return (
-            <div className="optional-form" id="pick-option">
-                <h2 id= "pick-extras" class="mt-0 mb-16">Extras (Optional)</h2>
-                <p class="m-0">
-                    <Tooltip content={"Eggless: Yogurt-based substite. Fondant: A delicious icing accessory made with 100% edible ingredients. Topper: Non-edible props, birthday messages, accessories. Character: Non-edible figurine and collectible characters."}>
-                        For an extra charge.
-                    </Tooltip>
-                </p>
-                <br></br>
-                <Options render/>
-                <br></br>
-            </div>
+            <GenericSection topDivider className="center-content" id="pick-extras">
+                <div className="optional-form">
+                    <h2 class="mt-0 mb-16">Extras (Optional)</h2>
+                    <p class="m-0">
+                        <Tooltip content={"Eggless: Yogurt-based substite. Fondant: A delicious icing accessory made with 100% edible ingredients. Topper: Non-edible props, birthday messages, accessories. Character: Non-edible figurine and collectible characters."}>
+                            For an extra charge.
+                        </Tooltip>
+                    </p>
+                    <br></br>
+                    <Options render/>
+                </div>
+            </GenericSection >
         );
     }
 
@@ -246,7 +262,7 @@ const Order = () => {
             {
                 await API.graphql(graphqlOperation(createProduct, { input: productDetails }));
                 addToCart(productDetails);
-                reviewReady = false;
+                review_ready = false;
                 return history.push('/cart');
             }
         } catch (err) {

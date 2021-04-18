@@ -1,23 +1,7 @@
 import React, { Component } from 'react';
 import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
-import './ResponsiveTableStyles.css';
-
-import CreateNotification from '../../notifications/Notification';
-
-function PickTier(e) {
-
-  // Clear all buttons
-  var elements = document.getElementsByClassName("tier-button");
-  for (var i = 0; i < elements.length; i++) {
-    elements[i].checked = false;
-  }
-  
-  // Recheck chosen button
-  e.target.checked = true;
-
-  // Saved Tier Notification
-  CreateNotification("Saved Tier", "Heart - " + e.target.id);
-}
+import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
+import PickTier from './PickTier.js';
 
 class HeartTierTable extends Component{
 

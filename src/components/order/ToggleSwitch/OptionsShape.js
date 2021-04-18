@@ -6,6 +6,7 @@ import CircleTierTable from '../tiers/CircleTierTable';
 import RectangleTierTable from '../tiers/RectangleTierTable';
 import HeartTierTable from '../tiers/HeartTierTable';
 import CreateNotification from '../../notifications/Notification';
+import GenericSection from '../../sections/GenericSection';
 
 // List of optionals that can be toggled
 const ACTIVITIES = [
@@ -28,6 +29,7 @@ class OptionsShape extends Component {
                 if (enabled) {
                     CreateNotification("Added Shape", "Cake is now circular");
                     chosenShape = "Circle";
+                    document.getElementById("tierRef").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
                 }
                 break;
 
@@ -35,6 +37,7 @@ class OptionsShape extends Component {
                 if (enabled) {
                     CreateNotification("Added Shape", "Cake is now rectangular");
                     chosenShape = "Rectangle";
+                    document.getElementById("tierRef").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
                 }
                 break;
 
@@ -42,6 +45,7 @@ class OptionsShape extends Component {
                 if (enabled) {
                     CreateNotification("Added Shape", "Cake is now heart-shaped");
                     chosenShape = "Heart";
+                    document.getElementById("tierRef").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
                 }
                 break;
 
@@ -88,7 +92,6 @@ class OptionsShape extends Component {
 
     render() {
         const { enabled } = this.state;
-    
 
         function renderTierTable() {
             if (chosenShape === "Circle") {
@@ -97,7 +100,14 @@ class OptionsShape extends Component {
                 return <RectangleTierTable render />;
             } else if (chosenShape === "Heart") {
                 return <HeartTierTable render />;
-            } else return <></>;
+            } else {
+                return (
+                    <div>
+                        <h2 class="mt-0 mb-16">Tier (Required)</h2>
+                        <p class="m-0">Select a shape to display tier options.</p>
+                    </div>
+                );
+            }
         }
 
         return (
@@ -107,9 +117,9 @@ class OptionsShape extends Component {
                         { this.renderNotifiableActivities() }
                     </div>
                 ) }
-                <div id="pick-tier">
-                    {renderTierTable()}
-                </div>
+                    <GenericSection topDivider className="center-content" id="tierRef">
+                        {renderTierTable()}
+                    </GenericSection >
             </div>
         );
     }

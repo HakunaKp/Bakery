@@ -19,12 +19,7 @@ class Success extends React.Component {
   }
 
   render() {
-/*
-    const genericSection05Header = {
-      title: 'Success Form',
-      paragraph: 'Each order is delicately prepared to fit the needs of your occasion. Monica pays close attention to fine details and works carefully with clients to prepare deserts that everyone can enjoy.'
-    }
-*/
+
     return (
       <React.Fragment>
         <GenericSection topDivider className="center-content">

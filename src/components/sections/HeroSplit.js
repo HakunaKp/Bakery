@@ -73,7 +73,7 @@ class HeroSplit extends React.Component {
                     Monica's Specialty Pastry Cakes
                   </h1>
                   <p className="mt-0 mb-32 reveal-from-bottom" data-reveal-delay="300">
-                    Everyone's favorite for sweet treats handmade with love. Placing an order has never been easier!
+                    Your favorite for elegant desserts handmade with love. Placing an order has never been easier!
                   </p>
                   <div className="reveal-from-bottom" data-reveal-delay="450">
                     <Button tag="a" color="primary" href="/order/" wideMobile>
