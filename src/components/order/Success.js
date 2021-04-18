@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 const Success = () => {
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, []);
+
     return (
         <div>
             <h1>Success! Your order has been confirmed.</h1>

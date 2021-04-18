@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { CartContext } from "../../context/cart";
 import { FiChevronUp } from "react-icons/fi";
 import { FiChevronDown } from "react-icons/fi";
@@ -11,6 +11,10 @@ import printExtras from '../cart/PrintExtras';
 import FlavorDescription from '../descriptions/FlavorDescription';
 
 const Cart = () => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, []);
 
   const { cart, total, increaseAmount, decreaseAmount } = useContext(CartContext);
 

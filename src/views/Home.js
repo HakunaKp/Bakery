@@ -6,11 +6,6 @@ import HeroSplit from '../components/sections/HeroSplit';
 import GenericSection from '../components/sections/GenericSection';
 import FeaturesTiles from '../components/sections/FeaturesTiles';
 import Testimonial from '../components/sections/Testimonial';
-// import some required elements
-import Image from '../components/elements/Image';
-import Modal from '../components/elements/Modal';
-
-import Video from '../assets/video.mp4';
 
 class Home extends React.Component {
 
@@ -40,25 +35,8 @@ class Home extends React.Component {
         <GenericSection topDivider className="center-content">
           <SectionHeader data={genericSection01Header} className="reveal-from-bottom" />
           <div className="reveal-from-bottom">
-            <a
-              data-video={Video}
-              href="#0"
-              aria-controls="video-modal"
-              onClick={this.openModal}
-            >
-              <Image
-                src={require('./../assets/images/video-placeholder.svg')}
-                alt="Video"
-                width={712}
-                height={400} />
-            </a>
+            <iframe src="https://player.vimeo.com/video/538371599?title=0&amp;byline=0&amp;portrait=0&amp;speed=0&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="848" height="480" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Cake Video"></iframe>
           </div>
-          <Modal
-            id="video-modal"
-            show={this.state.videoModalActive}
-            handleClose={this.closeModal}
-            video={Video}
-            videoTag="iframe" />
         </GenericSection>         
         <FeaturesTiles topDivider className="center-content" />
         <Testimonial topDivider />  

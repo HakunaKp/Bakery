@@ -36,7 +36,7 @@ import GenericSection from '.././sections/GenericSection';
 var reviewReady = false;
 
 const Order = () => {
-
+      
     const history = useHistory();
 
     const FLAVORS = ['Strawberry', 'Blueberry', 'Mango', 'Pineapple', 'Black Forest', 'Butterscotch', 'Chocolate Ganache'];
@@ -55,7 +55,7 @@ const Order = () => {
     ];
     
     const genericSectionHeader = {
-        title: 'Review Selections.'
+        title: 'Review Selections'
     }
 
     function PickFlavor(e) {
@@ -255,19 +255,17 @@ const Order = () => {
     }
 
     return (
-                <AmplifyAuthenticator>
-                    <ReactNotifications />
-                    <form className="form-wrapper" onSubmit={handleSubmit}>
-                        <div>
-                            <Flavor />
-                            <Shape />
-                            <Optional />
-                            <Description />
-                            <Allergies />
-                            <Review />
-                        </div>
-                    </form>
-                </AmplifyAuthenticator>
+        <AmplifyAuthenticator>
+            <ReactNotifications />
+            <form className="form-wrapper" onSubmit={handleSubmit}>
+                <Flavor/>
+                <Shape />
+                <Optional />
+                <Description />
+                <Allergies />
+                <Review />
+            </form>
+        </AmplifyAuthenticator>
     );
 }
 
