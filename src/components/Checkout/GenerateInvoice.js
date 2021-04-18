@@ -1,4 +1,4 @@
-import printTier from '../Cart/PrintTier';
+import printTier from '../cart/PrintTier';
 
 export default function generateInvoiceTable(product, doc){
     doc.autoTable({

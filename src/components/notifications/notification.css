@@ -1,0 +1,27 @@
+/* Notification title */
+div.notification {
+    pointer-events: auto;
+    box-shadow:5vh 5vh 7.5vh #131c27;
+    margin-top:2.5%;
+    margin-bottom: 2.5%;
+    text-align: left;
+  }
+  
+  /* Notification message */
+  .notification__message {
+    text-align: right;
+  }
+  
+  div.notifications-component{
+    width: 25%;
+  }
+  
+  div.notification-container--top-full{
+    pointer-events: none;
+  }
+  
+  .notification__content{
+    background: linear-gradient(rgba(106, 136, 245, 0.774), transparent), url(../../assets/images/notification-background.jpg);
+    background-position: cover;
+}
+  

@@ -1,0 +1,363 @@
+﻿schema {
+  query: Query
+  mutation: Mutation
+}
+
+type ModelOrderConnection {
+  items: [Order]
+  nextToken: String
+}
+
+type ModelProductConnection {
+  items: [Product]
+  nextToken: String
+}
+
+type ModelProductOrderConnection {
+  items: [ProductOrder]
+  nextToken: String
+}
+
+type Mutation {
+  createOrder(condition: ModelOrderConditionInput, input: CreateOrderInput!): Order
+  createProduct(condition: ModelProductConditionInput, input: CreateProductInput!): Product
+  createProductOrder(condition: ModelProductOrderConditionInput, input: CreateProductOrderInput!): ProductOrder
+  deleteOrder(condition: ModelOrderConditionInput, input: DeleteOrderInput!): Order
+  deleteProduct(condition: ModelProductConditionInput, input: DeleteProductInput!): Product
+  deleteProductOrder(condition: ModelProductOrderConditionInput, input: DeleteProductOrderInput!): ProductOrder
+  processOrder(input: ProcessOrderInput!): OrderStatus
+  updateOrder(condition: ModelOrderConditionInput, input: UpdateOrderInput!): Order
+  updateProduct(condition: ModelProductConditionInput, input: UpdateProductInput!): Product
+  updateProductOrder(condition: ModelProductOrderConditionInput, input: UpdateProductOrderInput!): ProductOrder
+}
+
+type Order {
+  createdAt: AWSDateTime!
+  date: String
+  email: String!
+  id: ID!
+  pickupDate: String
+  pickupTime: String
+  products(filter: ModelProductOrderFilterInput, limit: Int, nextToken: String, product_id: ModelIDKeyConditionInput, sortDirection: ModelSortDirection): ModelProductOrderConnection
+  total: Float
+  updatedAt: AWSDateTime!
+  user: String!
+  username: String!
+}
+
+type Product {
+  allergies: String
+  characters: Boolean
+  createdAt: AWSDateTime!
+  description: String
+  eggless: Boolean
+  flavor: String
+  fondant: Boolean
+  id: ID!
+  orders(filter: ModelProductOrderFilterInput, limit: Int, nextToken: String, order_id: ModelIDKeyConditionInput, sortDirection: ModelSortDirection): ModelProductOrderConnection
+  price: String
+  shape: String
+  tier: String
+  topper: Boolean
+  updatedAt: AWSDateTime!
+}
+
+type ProductOrder {
+  createdAt: AWSDateTime!
+  id: ID!
+  order: Order
+  order_id: ID!
+  product: Product
+  product_id: ID!
+  updatedAt: AWSDateTime!
+}
+
+type Query {
+  getOrder(id: ID!): Order
+  getProduct(id: ID!): Product
+  listOrders(filter: ModelOrderFilterInput, limit: Int, nextToken: String): ModelOrderConnection
+  listProducts(filter: ModelProductFilterInput, limit: Int, nextToken: String): ModelProductConnection
+}
+
+enum ModelAttributeTypes {
+  _null
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+enum OrderStatus {
+  FAILED
+  SUCCESS
+}
+
+input CartItem {
+  allergies: String
+  amount: Int
+  characters: Boolean
+  description: String
+  eggless: Boolean
+  flavor: String
+  fondant: Boolean
+  id: ID!
+  price: Float
+  shape: String
+  tier: String
+  topper: Boolean
+}
+
+input CreateOrderInput {
+  date: String
+  email: String!
+  id: ID
+  pickupDate: String
+  pickupTime: String
+  total: Float
+  user: String!
+  username: String!
+}
+
+input CreateProductInput {
+  allergies: String
+  characters: Boolean
+  description: String
+  eggless: Boolean
+  flavor: String
+  fondant: Boolean
+  id: ID
+  price: String
+  shape: String
+  tier: String
+  topper: Boolean
+}
+
+input CreateProductOrderInput {
+  id: ID
+  order_id: ID!
+  product_id: ID!
+}
+
+input DeleteOrderInput {
+  id: ID
+}
+
+input DeleteProductInput {
+  id: ID
+}
+
+input DeleteProductOrderInput {
+  id: ID
+}
+
+input ModelBooleanInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  eq: Boolean
+  ne: Boolean
+}
+
+input ModelFloatInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  between: [Float]
+  eq: Float
+  ge: Float
+  gt: Float
+  le: Float
+  lt: Float
+  ne: Float
+}
+
+input ModelIDInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  beginsWith: ID
+  between: [ID]
+  contains: ID
+  eq: ID
+  ge: ID
+  gt: ID
+  le: ID
+  lt: ID
+  ne: ID
+  notContains: ID
+  size: ModelSizeInput
+}
+
+input ModelIDKeyConditionInput {
+  beginsWith: ID
+  between: [ID]
+  eq: ID
+  ge: ID
+  gt: ID
+  le: ID
+  lt: ID
+}
+
+input ModelIntInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  between: [Int]
+  eq: Int
+  ge: Int
+  gt: Int
+  le: Int
+  lt: Int
+  ne: Int
+}
+
+input ModelOrderConditionInput {
+  and: [ModelOrderConditionInput]
+  date: ModelStringInput
+  email: ModelStringInput
+  not: ModelOrderConditionInput
+  or: [ModelOrderConditionInput]
+  pickupDate: ModelStringInput
+  pickupTime: ModelStringInput
+  total: ModelFloatInput
+  user: ModelStringInput
+  username: ModelStringInput
+}
+
+input ModelOrderFilterInput {
+  and: [ModelOrderFilterInput]
+  date: ModelStringInput
+  email: ModelStringInput
+  id: ModelIDInput
+  not: ModelOrderFilterInput
+  or: [ModelOrderFilterInput]
+  pickupDate: ModelStringInput
+  pickupTime: ModelStringInput
+  total: ModelFloatInput
+  user: ModelStringInput
+  username: ModelStringInput
+}
+
+input ModelProductConditionInput {
+  allergies: ModelStringInput
+  and: [ModelProductConditionInput]
+  characters: ModelBooleanInput
+  description: ModelStringInput
+  eggless: ModelBooleanInput
+  flavor: ModelStringInput
+  fondant: ModelBooleanInput
+  not: ModelProductConditionInput
+  or: [ModelProductConditionInput]
+  price: ModelStringInput
+  shape: ModelStringInput
+  tier: ModelStringInput
+  topper: ModelBooleanInput
+}
+
+input ModelProductFilterInput {
+  allergies: ModelStringInput
+  and: [ModelProductFilterInput]
+  characters: ModelBooleanInput
+  description: ModelStringInput
+  eggless: ModelBooleanInput
+  flavor: ModelStringInput
+  fondant: ModelBooleanInput
+  id: ModelIDInput
+  not: ModelProductFilterInput
+  or: [ModelProductFilterInput]
+  price: ModelStringInput
+  shape: ModelStringInput
+  tier: ModelStringInput
+  topper: ModelBooleanInput
+}
+
+input ModelProductOrderConditionInput {
+  and: [ModelProductOrderConditionInput]
+  not: ModelProductOrderConditionInput
+  or: [ModelProductOrderConditionInput]
+  order_id: ModelIDInput
+  product_id: ModelIDInput
+}
+
+input ModelProductOrderFilterInput {
+  and: [ModelProductOrderFilterInput]
+  id: ModelIDInput
+  not: ModelProductOrderFilterInput
+  or: [ModelProductOrderFilterInput]
+  order_id: ModelIDInput
+  product_id: ModelIDInput
+}
+
+input ModelSizeInput {
+  between: [Int]
+  eq: Int
+  ge: Int
+  gt: Int
+  le: Int
+  lt: Int
+  ne: Int
+}
+
+input ModelStringInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  beginsWith: String
+  between: [String]
+  contains: String
+  eq: String
+  ge: String
+  gt: String
+  le: String
+  lt: String
+  ne: String
+  notContains: String
+  size: ModelSizeInput
+}
+
+input ProcessOrderInput {
+  cart: [CartItem]
+  email: String!
+  id: ID!
+  pickupDate: String
+  pickupTime: String
+  token: String!
+  total: Float!
+  username: String!
+}
+
+input UpdateOrderInput {
+  date: String
+  email: String
+  id: ID!
+  pickupDate: String
+  pickupTime: String
+  total: Float
+  user: String
+  username: String
+}
+
+input UpdateProductInput {
+  allergies: String
+  characters: Boolean
+  description: String
+  eggless: Boolean
+  flavor: String
+  fondant: Boolean
+  id: ID!
+  price: String
+  shape: String
+  tier: String
+  topper: Boolean
+}
+
+input UpdateProductOrderInput {
+  id: ID!
+  order_id: ID
+  product_id: ID
+}
