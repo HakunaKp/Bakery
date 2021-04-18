@@ -1,5 +1,6 @@
 import React from 'react';
 import OrderContent from '../components/order/Order';
+import { AmplifyAuthenticator } from '@aws-amplify/ui-react';
 
 class Order extends React.Component {
 
@@ -7,7 +8,9 @@ class Order extends React.Component {
   
     return (
       <React.Fragment>
-        <OrderContent />
+        <AmplifyAuthenticator>
+          <OrderContent />
+        </AmplifyAuthenticator>
       </React.Fragment>
     );
   }

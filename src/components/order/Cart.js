@@ -2,10 +2,9 @@ import React, { useContext, useEffect } from "react";
 import { CartContext } from "../../context/cart";
 import { FiChevronUp } from "react-icons/fi";
 import { FiChevronDown } from "react-icons/fi";
-import { AmplifyAuthenticator } from '@aws-amplify/ui-react';
 import { Tooltip } from '@varld/popover';
 import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
-
+import { Link } from 'react-router-dom';
 import printTier from '../cart/PrintTier';
 import printExtras from '../cart/PrintExtras';
 import FlavorDescription from '../descriptions/FlavorDescription';
@@ -19,14 +18,13 @@ const Cart = () => {
   const { cart, total, increaseAmount, decreaseAmount } = useContext(CartContext);
 
   if (!cart.length) {
-    return <h1>Empty Cart</h1>
+    return <h2 class="mt-0 mb-16">Empty Cart</h2>
   }
 
   return (
-    <AmplifyAuthenticator>
       <section className="cart">
-        <h1>Shopping Cart</h1>
-        <div className="cart-form">
+          <h2 class="mt-0 mb-16">Shopping Cart</h2>
+          <div className="cart-form">
           <Table>
             <Thead>
               <Tr className="cart-tablerows">
@@ -82,8 +80,9 @@ const Cart = () => {
           <h3>Total: ${total}.00</h3>
         </div>
 
+        <Link to="/order/" className="button button-primary button-wide-mobile button-sm">Add Another Item</Link>
+
       </section>
-    </AmplifyAuthenticator>
   );
 };
 

@@ -3,8 +3,8 @@ import { useHistory } from "react-router-dom";
 import { ProductContext } from "../../context/products";
 import { CartContext } from "../../context/cart";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import { AmplifyAuthenticator } from '@aws-amplify/ui-react';
 import { Auth } from 'aws-amplify';
+import Button from '../elements/Button';
 import emailjs from 'emailjs-com';
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
@@ -108,22 +108,22 @@ const CheckoutForm = () => {
   };
 
   return (
-    <AmplifyAuthenticator>
-      <form onSubmit={handleSubmit}>
-        <div className="checkout-form">
-          <div className="stripe-section">
-            <label htmlFor="stripe-element"> Credit or debit card </label>
-            <CardElement id="stripe-element" options={CARD_ELEMENT_OPTIONS} onChange={handleChange} />
-          </div>
-          <div className="card-errors" role="alert">
-            {error}
-          </div>
+    <form onSubmit={handleSubmit}>
+      <div className="checkout-form">
+        <div className="stripe-section">
+          <label htmlFor="stripe-element"> Credit or debit card </label>
+          <CardElement id="stripe-element" options={CARD_ELEMENT_OPTIONS} onChange={handleChange} />
         </div>
-        <button type="submit" className="btn">
-          Submit Payment
-        </button>
-      </form>
-    </AmplifyAuthenticator>
+        <div className="card-errors" role="alert">
+          {error}
+        </div>
+      </div>
+      <br></br>
+      <br></br>
+      <Button tag="a" color="secondary" onClick={handleSubmit} wideMobile>
+        Complete Order
+      </Button>
+    </form>
   );
 };
 

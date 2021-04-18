@@ -1,5 +1,4 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { AmplifyAuthenticator } from '@aws-amplify/ui-react';
 import { API, graphqlOperation } from "aws-amplify";
 import { createProduct } from '../../api/mutations';
 import { CartContext } from '../../context/cart';
@@ -36,6 +35,10 @@ import GenericSection from '.././sections/GenericSection';
 var review_ready = false;
 
 const Order = () => {
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, []);
 
     const [shapeState, setShapeState] = useState(false);
     const shapeRef = React.useRef();
@@ -271,17 +274,15 @@ const Order = () => {
     }
 
     return (
-        <AmplifyAuthenticator>
+        <form className="form-wrapper" onSubmit={handleSubmit}>
             <ReactNotifications />
-            <form className="form-wrapper" onSubmit={handleSubmit}>
-                <Flavor/>
-                <Shape />
-                <Optional />
-                <Description />
-                <Allergies />
-                <Review />
-            </form>
-        </AmplifyAuthenticator>
+            <Flavor/>
+            <Shape />
+            <Optional />
+            <Description />
+            <Allergies />
+            <Review />
+        </form>
     );
 }
 

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { AmplifyAuthenticator } from '@aws-amplify/ui-react';
 import 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import {
@@ -23,19 +22,16 @@ const PickUp = () => {
   };
 
   return (
-    <AmplifyAuthenticator>
       <section className="pickUp">
         <div className="pickUp-content">
 
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <div className="pickUp-selections">
 
-              <h1>Select Pick Up Date &amp; Time</h1>
-              <br></br>
-              <h4>Press the enter key with the pop-up open to confirm your choice.</h4>
-              <h4>Please note some dates may be unavailable.</h4>
-              <h4>Order availability is updated every Sunday at 2PM EST.</h4>
-              <br></br>
+              <h2 class="mt-0 mb-16">Select Pick Up Date &amp; Time</h2>
+              <p class="m-0">Press the enter key with the pop-up open to confirm your choice.</p>
+              <p class="m-0">Some dates may be unavailable due to high demand.</p>
+              <p class="m-0">Order availability is updated every Sunday at 2PM EST.</p>
               <br></br>
 
               <KeyboardDatePicker
@@ -63,7 +59,6 @@ const PickUp = () => {
 
         </div>
       </section>
-    </AmplifyAuthenticator>
   );
 }
 

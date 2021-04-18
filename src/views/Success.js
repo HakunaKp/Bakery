@@ -1,7 +1,7 @@
 import React from 'react';
 import GenericSection from '../components/sections/GenericSection';
 import SuccessPage from '../components/order/Success';
-
+import { AmplifyAuthenticator } from '@aws-amplify/ui-react';
 
 class Success extends React.Component {
 
@@ -23,7 +23,9 @@ class Success extends React.Component {
     return (
       <React.Fragment>
         <GenericSection topDivider className="center-content">
-          <SuccessPage />
+          <AmplifyAuthenticator>
+            <SuccessPage />
+          </AmplifyAuthenticator>
         </GenericSection>
       </React.Fragment>
     );
