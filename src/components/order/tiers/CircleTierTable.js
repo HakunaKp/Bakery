@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
+import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
+
 import CreateNotification from '../../notifications/Notification';
-import './ResponsiveTableStyles.css';
 
 function PickTier(e) {
 
@@ -16,8 +17,6 @@ function PickTier(e) {
 
   // Saved Tier Notification
   CreateNotification("Saved Tier", "Circle - " + e.target.id);
-
-  document.getElementById("pick-extras").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
 }
 
 class CircleTierTable extends Component{

@@ -6,15 +6,15 @@ import { CartContext } from '../../context/cart';
 import { useHistory } from "react-router-dom";
 import { Tooltip } from '@varld/popover';
 
+import SectionHeader from '../sections/partials/SectionHeader';
 import Button from '../elements/Button';
-
 import ReactNotifications from 'react-notifications-component';
 import CreateNotification from '../notifications/Notification';
-
 import Carousel from 'react-elastic-carousel';
 import Item from './CarouselItem';
+import Accordion from '../elements/Accordion';
+import AccordionItem from '../elements/AccordionItem';
 
-import Accordion from '../order/accordion/Accordion';
 import FlavorDescription from '../descriptions/FlavorDescription';
 import ShapeDescription from '../descriptions/ShapeDescription';
 import TierTitle from '../descriptions/TierTitle';
@@ -54,11 +54,15 @@ const Order = () => {
         { width: 900, itemsToShow: 3 },
     ];
     
+    const genericSectionHeader = {
+        title: 'Review Selections.'
+    }
+
     function PickFlavor(e) {
         //Set Product Details
         setProductDetails({ ...productDetails, flavor: e.target.innerHTML });
-        //Jump to PickShape
-        return document.getElementById("pick-shape").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+        CreateNotification("Saved Flavor", "Flavor - " + e.target.id);
+        return;
     }
 
     function Flavor() {
@@ -116,8 +120,6 @@ const Order = () => {
 
             if (!tierSelected && !productDetails.tier) return CreateNotification("Error", "Tier is required!");
 
-            // Jump to review
-            if (document.getElementById("review-header")) document.getElementById("review-header").scrollIntoView({behavior: "smooth", block: "start", inline: "start"}); 
             extrasReady = false;
         }
     }
@@ -154,7 +156,7 @@ const Order = () => {
                 </div>
                 <br></br>
                 <Button tag="a" color="secondary" onClick={SaveChoices} wideMobile>
-                    Save & Review
+                    Save Selections
                 </Button>
             </div>
         );
@@ -164,34 +166,28 @@ const Order = () => {
         if (reviewReady) {
             return(
                 <GenericSection topDivider className="center-content">
-                    <div className="review-form">
-                        <br></br>
-                        <p id="review-selections" styling="align-content: left">The selections below will be added to cart</p>
-                        <br></br>
-                        <Accordion
-                            title= {"Flavor - " + productDetails.flavor}
-                            content= {FlavorDescription(productDetails.flavor)}
-                        />
-                        <Accordion
-                            title= {"Shape - " + productDetails.shape}
-                            content= {ShapeDescription(productDetails.shape)}
-                        />
-                        <Accordion
-                            title= {TierTitle(productDetails.tier)}
-                            content= {TierDescription(productDetails.shape, productDetails.tier)}
-                        />
-                        <Accordion
-                            title= {ExtrasTitle(productDetails.eggless, productDetails.fondant, productDetails.topper, productDetails.characters)}
-                            content= {ExtrasDescription(productDetails.eggless, productDetails.fondant, productDetails.topper, productDetails.characters)}
-                        />
-                        <Accordion
-                            title= {DescriptionTitle(productDetails.description)}
-                            content= {DescriptionDescription(productDetails.description)}
-                        />
-                        <Accordion
-                            title= {AllergiesTitle(productDetails.allergies)}
-                            content= {AllergiesDescription(productDetails.allergies)}
-                        />
+                    <div id="review-selections" className="container-xs">
+                        <SectionHeader data={genericSectionHeader} className="center-content" />
+                        <Accordion>
+                            <AccordionItem title={"Flavor - " + productDetails.flavor} active>
+                                {FlavorDescription(productDetails.flavor)}
+                            </AccordionItem>
+                            <AccordionItem title={"Shape - " + productDetails.shape}>
+                                {ShapeDescription(productDetails.shape)}
+                            </AccordionItem>
+                            <AccordionItem title={TierTitle(productDetails.tier)}>
+                                {TierDescription(productDetails.shape, productDetails.tier)}
+                            </AccordionItem>
+                            <AccordionItem title={ExtrasTitle(productDetails.eggless, productDetails.fondant, productDetails.topper, productDetails.characters)}>
+                                {ExtrasDescription(productDetails.eggless, productDetails.fondant, productDetails.topper, productDetails.characters)}
+                            </AccordionItem>
+                            <AccordionItem title={DescriptionTitle(productDetails.description)}>
+                                {DescriptionDescription(productDetails.description)}
+                            </AccordionItem>
+                            <AccordionItem title={AllergiesTitle(productDetails.allergies)}>
+                                {AllergiesDescription(productDetails.allergies)}
+                            </AccordionItem>
+                        </Accordion>
                         <Button tag="a" color="primary" onClick={handleSubmit} wideMobile>
                             Add To Cart
                         </Button>
@@ -205,9 +201,6 @@ const Order = () => {
     function SaveChoices() {
         SaveForm(true);
         reviewReady = true;
-        if (document.getElementById("review-selections")){
-            document.getElementById("review-selections").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
-        }
         return;
     }
 

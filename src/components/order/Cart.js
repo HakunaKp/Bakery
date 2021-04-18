@@ -2,9 +2,10 @@ import React, { useContext } from "react";
 import { CartContext } from "../../context/cart";
 import { FiChevronUp } from "react-icons/fi";
 import { FiChevronDown } from "react-icons/fi";
-import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
 import { AmplifyAuthenticator } from '@aws-amplify/ui-react';
 import { Tooltip } from '@varld/popover';
+import { Table, Thead, Tbody, Tr, Th, Td } from 'react-super-responsive-table';
+
 import printTier from '../cart/PrintTier';
 import printExtras from '../cart/PrintExtras';
 import FlavorDescription from '../descriptions/FlavorDescription';

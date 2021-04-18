@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import classnames from 'classnames';
 import snakeCase from 'lodash/snakeCase';
 import Switch from './';
-import { store } from 'react-notifications-component';
 import CircleTierTable from '../tiers/CircleTierTable';
 import RectangleTierTable from '../tiers/RectangleTierTable';
 import HeartTierTable from '../tiers/HeartTierTable';
+import CreateNotification from '../../notifications/Notification';
 
 // List of optionals that can be toggled
 const ACTIVITIES = [
@@ -13,23 +13,6 @@ const ACTIVITIES = [
 ];
 
 var chosenShape = "";
-
-// Function to Create notification
-function CreateNotification(title_string, message_string) {
-    store.addNotification({
-        title: title_string,
-        message: message_string,
-        type: "default",                         // 'default', 'success', 'info', 'warning'
-        container: "top-full",                // where to position the notifications
-        insert: "top",
-        animationIn: ["animated", "fadeIn"],     // animate.css classes that's applied
-        animationOut: ["animated", "fadeOut"],   // animate.css classes that's applied
-        dismiss: {
-        duration: 2250,
-        showIcon: true
-        },
-    })
-}
 
 class OptionsShape extends Component {
 
