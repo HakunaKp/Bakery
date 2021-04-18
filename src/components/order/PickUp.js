@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import 'date-fns';
+import Format from 'date-fns/format';
 import DateFnsUtils from '@date-io/date-fns';
 import {
   MuiPickersUtilsProvider,
@@ -32,6 +33,7 @@ const PickUp = () => {
               <p class="m-0">Press the enter key with the pop-up open to confirm your choice.</p>
               <p class="m-0">Some dates may be unavailable due to high demand.</p>
               <p class="m-0">Order availability is updated every Sunday at 2PM EST.</p>
+
               <br></br>
 
               <KeyboardDatePicker
@@ -54,6 +56,16 @@ const PickUp = () => {
               onChange={handleTimeChange}
               />
             </div>
+
+            <br></br>
+            <br></br>
+
+            <h3 className="mt-0 mb-12">
+              {`Selected Date: ${Format(selectedDate, 'PPP')}`}
+            </h3>
+            <h3 className="mt-0 mb-12">
+            {`Selected Time: ${Format(selectedTime, 'p')}`}
+            </h3>
 
           </MuiPickersUtilsProvider>
 

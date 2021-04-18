@@ -1,6 +1,7 @@
 import React from 'react';
 import OrderContent from '../components/order/Order';
 import { AmplifyAuthenticator } from '@aws-amplify/ui-react';
+import GenericSection from '../components/sections/GenericSection';
 
 class Order extends React.Component {
 
@@ -8,9 +9,11 @@ class Order extends React.Component {
   
     return (
       <React.Fragment>
-        <AmplifyAuthenticator>
-          <OrderContent />
-        </AmplifyAuthenticator>
+        <GenericSection className="center-content">
+          <AmplifyAuthenticator>
+              <OrderContent />
+          </AmplifyAuthenticator>
+        </GenericSection>
       </React.Fragment>
     );
   }

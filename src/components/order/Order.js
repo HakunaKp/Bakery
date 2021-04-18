@@ -80,7 +80,6 @@ const Order = () => {
 
     function Flavor() {
         return (
-            <GenericSection topDivider className="center-content">
                 <div className="flavor-form">
                     <h2 class="mt-0 mb-16">Flavor (Required)</h2>
                     <p class="m-0">Select from seven of our most popular flavors.</p>
@@ -93,7 +92,6 @@ const Order = () => {
                     })}
                     </Carousel>
                 </div>
-            </GenericSection>
         );
     }
 
@@ -170,12 +168,12 @@ const Order = () => {
                             id="allergies-box"
                         />
                     </div>
-                </GenericSection>
-                <GenericSection topDivider className="center-content">
-                    <Button tag="a" color="secondary" onClick={SaveChoices} wideMobile>
-                        Save Selections
-                    </Button>
-                </GenericSection>
+                </GenericSection >
+                <GenericSection topDivider className="center-content" />
+                <Button tag="a" color="secondary" onClick={SaveChoices} wideMobile>
+                    Review Selections
+                </Button>
+                <GenericSection bottomDivider className="center-content" />
             </div>
         );
     }
