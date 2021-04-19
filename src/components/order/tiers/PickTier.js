@@ -1,4 +1,5 @@
 import CreateNotification from '../../notifications/Notification';
+import printTier from '../../cart/PrintTier';
 
 export default function PickTier(e) {
 
@@ -12,7 +13,7 @@ export default function PickTier(e) {
     e.target.checked = true;
   
     // Saved Tier Notification
-    CreateNotification("Saved Tier", "Circle - " + e.target.id);
+    CreateNotification("Saved Tier", printTier(e.target.id));
 
   //  document.getElementById("pick-extras").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
 }
