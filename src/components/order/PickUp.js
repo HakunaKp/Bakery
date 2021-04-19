@@ -31,7 +31,7 @@ const PickUp = () => {
 
               <h2 class="mt-0 mb-16">Select Pick Up Date &amp; Time</h2>
               <p class="m-0">Some dates may be unavailable.</p>
-              <p class="m-0">Calendar updated Sundays at 2PM EST.</p>
+              <p class="m-0">Calendar updated Sunday at 2PM EST.</p>
 
               <br></br>
 

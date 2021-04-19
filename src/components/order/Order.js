@@ -44,7 +44,7 @@ const Order = () => {
     const shapeRef = React.useRef();
     useEffect(() => {
         if (shapeState && shapeRef.current) {
-          shapeRef.current.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+        //  shapeRef.current.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
           setShapeState(false);
         }
     }, [shapeState]);
@@ -90,7 +90,7 @@ const Order = () => {
     function Flavor() {
         return (
                 <div className="flavor-form">
-                    <h2 class="mt-0 mb-16">Flavor (Required)</h2>
+                    <h2 class="mt-0 mb-16">Flavor</h2>
                     <p class="m-0">Select from seven of our most popular flavors.</p>
                     <br></br>
                     <Carousel breakPoints={breakPoints} fade="true" transition="5000">
@@ -108,7 +108,7 @@ const Order = () => {
         return (
             <GenericSection topDivider className="center-content">
                 <div className="shape-form" id="pick-shape" ref={shapeRef}>
-                    <h2 class="mt-0 mb-16">Shape (Required)</h2>
+                    <h2 class="mt-0 mb-16">Shape</h2>
                     <p class="m-0">Select from circle, square or rectangle, and heart options.</p>
                     <br></br>
                     <OptionsShape render/>
@@ -150,7 +150,9 @@ const Order = () => {
         return (
             <GenericSection topDivider className="center-content">
                 <div className="description-form">
-                    <h2 class="mt-0 mb-16">Description (Optional)</h2>
+                    <h2 class="mt-0 mb-16">Description</h2>
+                    <p class="m-0">Optional</p>
+                    <br></br>
                     <textarea 
                         type="text" 
                         rows="7" 
@@ -168,7 +170,9 @@ const Order = () => {
             <div>
                 <GenericSection topDivider className="center-content">
                     <div className="allergies-form">
-                        <h2 class="mt-0 mb-16">Allergies (Optional)</h2>
+                        <h2 class="mt-0 mb-16">Allergies</h2>
+                        <p class="m-0">Optional</p>
+                        <br></br>
                         <textarea 
                             type="text" 
                             rows="3" 
@@ -179,6 +183,7 @@ const Order = () => {
                     </div>
                 </GenericSection >
                 <GenericSection topDivider className="center-content" />
+
                 <Button tag="a" color="secondary" onClick={SaveChoices} wideMobile>
                     Review Selections
                 </Button>
@@ -251,10 +256,10 @@ const Order = () => {
         return (
             <GenericSection topDivider className="center-content" id="pick-extras">
                 <div className="optional-form">
-                    <h2 class="mt-0 mb-16">Extras (Optional)</h2>
-                    <p style={{textAlign: "center"}} class="m-0">
-                        <Tooltip content={"Eggless: Yogurt-based substite. Fondant: A delicious icing accessory made with 100% edible ingredients. Topper: Non-edible props, birthday messages, accessories. Character: Non-edible figurine and collectible characters."}>
-                            For an extra charge.
+                    <h2 class="mt-0 mb-16">Extras</h2>
+                    <p class="m-0" style={{textAlign: "center"}}>
+                        <Tooltip  style={{textAlign: "center"}} content={"Eggless: Yogurt-based substite. Fondant: A delicious icing accessory made with 100% edible ingredients. Topper: Non-edible props, birthday messages, accessories. Character: Non-edible figurine and collectible characters."}>
+                            May incur an additional charge.
                         </Tooltip>
                     </p>
                     <br></br>

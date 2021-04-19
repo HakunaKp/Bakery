@@ -42,7 +42,7 @@ class Home extends React.Component {
               onClick={this.openModal}
             >
               <Image
-                src={require('./../assets/images/video-placeholder.svg')}
+                src={require('./../assets/images/video-placeholder.jpg')}
                 alt="Video"
                 width={712}
                 height={400} />

@@ -111,7 +111,7 @@ const CheckoutForm = () => {
     <form onSubmit={handleSubmit}>
       <div className="checkout-form">
         <div className="stripe-section">
-          <label htmlFor="stripe-element"> Credit or debit card </label>
+          <p class="m-0">Credit or debit card</p>
           <br></br>
           <CardElement id="stripe-element" options={CARD_ELEMENT_OPTIONS} onChange={handleChange} />
         </div>

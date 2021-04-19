@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { SectionSplitProps } from '../../utils/SectionProps';
-import Button from '../elements/Button';
+import { Link } from 'react-router-dom';
 
 const propTypes = {
   ...SectionSplitProps.types
@@ -76,9 +76,7 @@ class HeroSplit extends React.Component {
                     Your favorite for elegant desserts handmade with love. Placing an order has never been easier!
                   </p>
                   <div className="reveal-from-bottom" data-reveal-delay="450">
-                    <Button tag="a" color="primary" href="/order/" wideMobile>
-                      Begin Order
-                    </Button>
+                    <Link to="/order/" className="button button-primary button-wide-mobile button-sm">Begin Order</Link>
                   </div>
                 </div>
               </div>

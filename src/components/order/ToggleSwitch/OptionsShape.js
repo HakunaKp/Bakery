@@ -29,7 +29,7 @@ class OptionsShape extends Component {
                 if (enabled) {
                     CreateNotification("Added Shape", "Cake is now circular");
                     chosenShape = "Circle";
-                    document.getElementById("tierRef").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+                //    document.getElementById("tierRef").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
                 }
                 break;
 
@@ -37,7 +37,7 @@ class OptionsShape extends Component {
                 if (enabled) {
                     CreateNotification("Added Shape", "Cake is now rectangular");
                     chosenShape = "Rectangle";
-                    document.getElementById("tierRef").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+                //    document.getElementById("tierRef").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
                 }
                 break;
 
@@ -45,7 +45,7 @@ class OptionsShape extends Component {
                 if (enabled) {
                     CreateNotification("Added Shape", "Cake is now heart-shaped");
                     chosenShape = "Heart";
-                    document.getElementById("tierRef").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+                //    document.getElementById("tierRef").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
                 }
                 break;
 
@@ -103,7 +103,7 @@ class OptionsShape extends Component {
             } else {
                 return (
                     <div>
-                        <h2 class="mt-0 mb-16">Tier (Required)</h2>
+                        <h2 class="mt-0 mb-16">Tier</h2>
                         <p class="m-0">Select a shape to display tier options.</p>
                     </div>
                 );

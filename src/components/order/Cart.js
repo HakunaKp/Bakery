@@ -47,11 +47,7 @@ const Cart = () => {
                 </Td>
                 <Td className="cart-tablecells">{shape}</Td>
                 <Td className="cart-tablecells">{printTier(tier)}</Td>
-                <Td className="cart-tablecells">
-                  Eggless: {printExtras(eggless)}<br></br>
-                  Fondant: {printExtras(fondant)}<br></br>
-                  Topper: {printExtras(topper)}<br></br>
-                  Character: {printExtras(characters)}<br></br>
+                <Td className="cart-tablecells">{printExtras(eggless, fondant, topper, characters)}
                 </Td>
 
                 <Td>              
@@ -77,7 +73,7 @@ const Cart = () => {
         </div>
 
         <div>
-          <h3>Total: ${total}.00</h3>
+          <h3 className="mt-0 mb-12">Total: ${total}.00</h3>
         </div>
 
         <Link to="/order/" className="button button-primary button-wide-mobile button-sm">Add Another Item</Link>
