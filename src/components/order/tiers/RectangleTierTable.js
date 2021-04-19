@@ -9,7 +9,7 @@ render() {
   return (
     <div className="tier-form">
       <br></br>
-      <h2 class="mt-0 mb-16">Rectangle-Shaped Cake - Tier</h2>    
+      <h2 class="mt-0 mb-16">Rectangular Cake</h2>    
       <Table>
       <Thead>
         <Tr>

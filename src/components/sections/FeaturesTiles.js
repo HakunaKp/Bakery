@@ -79,7 +79,7 @@ class FeaturesTiles extends React.Component {
                       Flavor
                     </h4>
                     <p className="m-0 text-sm">
-                      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat.
+                      Select from seven of our most popular flavors: Strawberry, Blueberry, Mango, Pineapple, Black Forest, Butterscotch, and Chocolate Ganache.
                     </p>
                   </div>
                 </div>
@@ -101,7 +101,7 @@ class FeaturesTiles extends React.Component {
                       Shape
                     </h4>
                     <p className="m-0 text-sm">
-                      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat.
+                      Select from one of three shapes: Circle, Square or Rectangle, or Heart. Each shape offers different sizes.
                     </p>
                   </div>
                 </div>
@@ -123,7 +123,7 @@ class FeaturesTiles extends React.Component {
                       Tier
                     </h4>
                     <p className="m-0 text-sm">
-                      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat.
+                      We provide measurements and serving size recommendations to make sure everyone at the party has a full plate.
                     </p>
                   </div>
                 </div>
@@ -145,7 +145,7 @@ class FeaturesTiles extends React.Component {
                       Fondant Work
                     </h4>
                     <p className="m-0 text-sm">
-                      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat.
+                      Fondant is a delicious icing accessory finely crafted with 100% edible ingredients. Monica has worked with fondant for over 10 years.
                     </p>
                   </div>
                 </div>
@@ -167,7 +167,7 @@ class FeaturesTiles extends React.Component {
                       Toppers &amp; Accessories
                     </h4>
                     <p className="m-0 text-sm">
-                      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat.
+                      Add non-edible props, birthday messages, accessories, figurines, and collectible characters to your cake.
                     </p>
                   </div>
                 </div>
@@ -186,10 +186,10 @@ class FeaturesTiles extends React.Component {
                   </div>
                   <div className="features-tiles-item-content">
                     <h4 className="mt-0 mb-8">
-                      Go Eggless
+                      Egg Alternatives
                     </h4>
                     <p className="m-0 text-sm">
-                      Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat.
+                      Feeling chicken? Go eggless. We provide alternative options for an eggless cake made with cream of white or sour cream.
                     </p>
                   </div>
                 </div>

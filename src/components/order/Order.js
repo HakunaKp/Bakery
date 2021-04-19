@@ -82,7 +82,7 @@ const Order = () => {
     function PickFlavor(e) {
         //Set Product Details
         setProductDetails({ ...productDetails, flavor: e.target.innerHTML });
-        CreateNotification("Saved Flavor", "Flavor - " + e.target.innerHTML);
+        CreateNotification("Saved Flavor", e.target.innerHTML);
         setShapeState(true);
         return;
     }
@@ -151,12 +151,12 @@ const Order = () => {
             <GenericSection topDivider className="center-content">
                 <div className="description-form">
                     <h2 class="mt-0 mb-16">Description</h2>
-                    <p class="m-0">Optional</p>
+                    <p class="m-0">Themes, color choices, written messages, extra details, etc.</p>
                     <br></br>
                     <textarea 
                         type="text" 
                         rows="7" 
-                        placeholder="- Theme&#10;- Color Choices&#10;- Written Messages&#10;- Fondant Details&#10;- Desired Toppers&#10;- Desired Characters&#10;- Etc."
+                        placeholder="Optional field."
                         name="description"
                         id="description-box"
                     />
@@ -171,12 +171,12 @@ const Order = () => {
                 <GenericSection topDivider className="center-content">
                     <div className="allergies-form">
                         <h2 class="mt-0 mb-16">Allergies</h2>
-                        <p class="m-0">Optional</p>
+                        <p class="m-0">Please list any allergies or dietary restrictions.</p>
                         <br></br>
                         <textarea 
                             type="text" 
                             rows="3" 
-                            placeholder="Please list any allergies or dietary restrictions (Leave blank if not applicable)"
+                            placeholder="Optional field."
                             name="allergies"
                             id="allergies-box"
                         />

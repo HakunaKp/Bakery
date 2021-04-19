@@ -9,7 +9,7 @@ class CircleTierTable extends Component{
   return (
     <div className="tier-form">
       <br></br>
-      <h2 class="mt-0 mb-16">Circle-Shaped Cake - Tier</h2>
+      <h2 class="mt-0 mb-16">Circular Cake</h2>
       <Table>
       <Thead>
         <Tr>

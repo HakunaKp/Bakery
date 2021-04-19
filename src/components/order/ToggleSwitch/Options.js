@@ -21,33 +21,25 @@ class Options extends Component {
 
             case 'eggless':
                 if (enabled) {
-                    CreateNotification("Added Customization", "Cake is now eggless");
-                } else {
-                    CreateNotification("Removed Customization", "Cake contains eggs");
+                    CreateNotification("Added Customization", "Eggless");
                 }
                 break;
 
             case 'fondant':
                 if (enabled) {
-                    CreateNotification("Added Customization", "Cake has edible fondant");
-                } else {
-                    CreateNotification("Removed Customization", "Cake has no edible fondant");
+                    CreateNotification("Added Customization", "Fondant");
                 }
                 break;
 
             case 'topper':
                 if (enabled) {
-                    CreateNotification("Added Customization", "Cake has topper decorations");
-                } else {
-                    CreateNotification("Removed Customization", "Cake has no topper decorations");
+                    CreateNotification("Added Customization", "Topper");
                 }
                 break;
 
             case 'characters':
                 if (enabled) {
-                    CreateNotification("Added Customization", "Cake has figurine characters");
-                } else {
-                    CreateNotification("Removed Customization", "Cake has no figurine characters");
+                    CreateNotification("Added Customization", "Characters");
                 }
                 break;
             default:
