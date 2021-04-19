@@ -9,8 +9,8 @@ import SectionHeader from '../sections/partials/SectionHeader';
 import Button from '../elements/Button';
 import ReactNotifications from 'react-notifications-component';
 import CreateNotification from '../notifications/Notification';
-import Carousel from 'react-elastic-carousel';
-import Item from './CarouselItem';
+import Carousel from '../elements/Carousel';
+import CarouselItem from '../elements/CarouselItem';
 import Accordion from '../elements/Accordion';
 import AccordionItem from '../elements/AccordionItem';
 
@@ -28,7 +28,7 @@ import Options from '../order/ToggleSwitch/Options';
 import OptionsShape from '../order/ToggleSwitch/OptionsShape';
 
 import 'react-notifications-component/dist/theme.css';
-import './orderstyles.css'
+//import './orderstyles.css'
 
 import GenericSection from '.././sections/GenericSection';
 
@@ -48,6 +48,15 @@ const Order = () => {
           setShapeState(false);
         }
     }, [shapeState]);
+    
+    const [reviewState, setReviewState] = useState(false);
+    const reviewRef = React.useRef();
+    useEffect(() => {
+        if (reviewState && reviewRef.current) {
+          reviewRef.current.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+          setReviewState(false);
+        }
+    }, [reviewState]);
 
     const history = useHistory();
 
@@ -73,7 +82,7 @@ const Order = () => {
     function PickFlavor(e) {
         //Set Product Details
         setProductDetails({ ...productDetails, flavor: e.target.innerHTML });
-        CreateNotification("Saved Flavor", "Flavor - " + e.target.id);
+        CreateNotification("Saved Flavor", "Flavor - " + e.target.innerHTML);
         setShapeState(true);
         return;
     }
@@ -86,9 +95,9 @@ const Order = () => {
                     <br></br>
                     <Carousel breakPoints={breakPoints} fade="true" transition="5000">
                     {FLAVORS.map((flavor) => {
-                        if (flavor === 'Chocolate Ganache') return <Item className="Flavor" id='Chocolate-Ganache' onClick={(e) => PickFlavor(e)} >{flavor}</Item>;
-                        if (flavor === 'Black Forest') return <Item className="Flavor" id='Black-Forest' onClick={(e) => PickFlavor(e)} >{flavor}</Item>;
-                        return <Item className="Flavor" id={flavor} onClick={(e) => PickFlavor(e)} >{flavor}</Item>;
+                        if (flavor === 'Chocolate Ganache') return <CarouselItem onClick={(e) => PickFlavor(e)} >{flavor}</CarouselItem>;
+                        if (flavor === 'Black Forest') return <CarouselItem onClick={(e) => PickFlavor(e)} >{flavor}</CarouselItem>;
+                        return <CarouselItem onClick={(e) => PickFlavor(e)} >{flavor}</CarouselItem>;
                     })}
                     </Carousel>
                 </div>
@@ -182,7 +191,7 @@ const Order = () => {
         if (review_ready) {
             return(
                 <GenericSection topDivider className="center-content">
-                    <div id="review-selections" className="container-xs">
+                    <div id="review-selections" className="container-xs" ref={reviewRef}>
                         <SectionHeader data={genericSectionHeader} className="center-content" />
                         <Accordion>
                             <AccordionItem title={"Flavor - " + productDetails.flavor} active>
@@ -204,6 +213,7 @@ const Order = () => {
                                 {AllergiesDescription(productDetails.allergies)}
                             </AccordionItem>
                         </Accordion>
+                        <br></br>
                         <Button tag="a" color="primary" onClick={handleSubmit} wideMobile>
                             Add To Cart
                         </Button>
@@ -217,6 +227,7 @@ const Order = () => {
     function SaveChoices() {
         SaveForm(true);
         review_ready = true;
+        setReviewState(true);
         return;
     }
 
@@ -241,7 +252,7 @@ const Order = () => {
             <GenericSection topDivider className="center-content" id="pick-extras">
                 <div className="optional-form">
                     <h2 class="mt-0 mb-16">Extras (Optional)</h2>
-                    <p class="m-0">
+                    <p style={{textAlign: "center"}} class="m-0">
                         <Tooltip content={"Eggless: Yogurt-based substite. Fondant: A delicious icing accessory made with 100% edible ingredients. Topper: Non-edible props, birthday messages, accessories. Character: Non-edible figurine and collectible characters."}>
                             For an extra charge.
                         </Tooltip>

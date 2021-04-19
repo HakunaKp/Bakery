@@ -94,6 +94,7 @@ class Header extends React.Component {
               'site-header-inner',
               bottomDivider && 'has-bottom-divider'
             )}>
+            {/*Logo created by https://www.designevo.com/ DesignEvo logo maker */}
             <Logo />
             {!hideNav &&
               <React.Fragment>

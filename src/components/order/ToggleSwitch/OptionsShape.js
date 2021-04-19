@@ -117,9 +117,9 @@ class OptionsShape extends Component {
                         { this.renderNotifiableActivities() }
                     </div>
                 ) }
-                    <GenericSection topDivider className="center-content" id="tierRef">
-                        {renderTierTable()}
-                    </GenericSection >
+                <GenericSection topDivider className="center-content" id="tierRef" >
+                    {renderTierTable()}
+                </GenericSection >
             </div>
         );
     }

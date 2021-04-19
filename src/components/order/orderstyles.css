@@ -39,14 +39,12 @@ div#Strawberry:hover {
 }
 
 div#Blueberry {
-  background: linear-gradient(rgba(0, 0, 0, 0.5), transparent), url(../../assets/images/blueberry-background.jpg);
-  background-size: cover;
+  background: url(../../assets/images/icons8-blueberry-48.png);
   font-size: 200%;
 }
 
 div#Blueberry:hover {
-  background: linear-gradient(rgba(245, 116, 133, 0.5), transparent), url(../../assets/images/blueberry-background.jpg);
-  background-size: cover;
+  background: url(../../assets/images/icons8-blueberry-48.png);
   cursor: pointer;
   box-shadow: 10px 10px 5px #131c27;
   font-style: italic;

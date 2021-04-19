@@ -30,9 +30,8 @@ const PickUp = () => {
             <div className="pickUp-selections">
 
               <h2 class="mt-0 mb-16">Select Pick Up Date &amp; Time</h2>
-              <p class="m-0">Press the enter key with the pop-up open to confirm your choice.</p>
-              <p class="m-0">Some dates may be unavailable due to high demand.</p>
-              <p class="m-0">Order availability is updated every Sunday at 2PM EST.</p>
+              <p class="m-0">Some dates may be unavailable.</p>
+              <p class="m-0">Calendar updated Sundays at 2PM EST.</p>
 
               <br></br>
 
@@ -67,6 +66,9 @@ const PickUp = () => {
             {`Selected Time: ${Format(selectedTime, 'p')}`}
             </h3>
 
+            <br></br>
+            <br></br>
+            
           </MuiPickersUtilsProvider>
 
         </div>

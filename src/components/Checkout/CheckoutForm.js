@@ -112,6 +112,7 @@ const CheckoutForm = () => {
       <div className="checkout-form">
         <div className="stripe-section">
           <label htmlFor="stripe-element"> Credit or debit card </label>
+          <br></br>
           <CardElement id="stripe-element" options={CARD_ELEMENT_OPTIONS} onChange={handleChange} />
         </div>
         <div className="card-errors" role="alert">

@@ -19,7 +19,7 @@ ReactDOM.render(
         <Router history={history}>
           <App />
         </Router>
-      </React.StrictMode>,
+      </React.StrictMode>
     </CartProvider>
   </ProductProvider>,
   document.getElementById('root')

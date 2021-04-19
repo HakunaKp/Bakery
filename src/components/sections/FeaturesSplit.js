@@ -71,7 +71,7 @@ class FeaturesSplit extends React.Component {
               <div className="split-item">
                 <div className="split-item-content center-content-mobile reveal-from-right" data-reveal-container=".split-item">
                   <h3 className="mt-0 mb-12">
-                    Data-driven insights
+                    Careful attention to fine details
                   </h3>
                   <p className="m-0">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua — Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -84,7 +84,7 @@ class FeaturesSplit extends React.Component {
                   )}
                   data-reveal-container=".split-item">
                   <Image
-                    src={require('./../../assets/images/features-split-image-01.svg')}
+                    src={require('./../../assets/images/featured-image-01.jpg')}
                     alt="Features split 01"
                     width={528}
                     height={396} />
@@ -94,7 +94,7 @@ class FeaturesSplit extends React.Component {
               <div className="split-item">
                 <div className="split-item-content center-content-mobile reveal-from-left" data-reveal-container=".split-item">
                   <h3 className="mt-0 mb-12">
-                    Data-driven insights
+                    Perfect for any occasion
                   </h3>
                   <p className="m-0">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua — Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -107,7 +107,7 @@ class FeaturesSplit extends React.Component {
                   )}
                   data-reveal-container=".split-item">
                   <Image
-                    src={require('./../../assets/images/features-split-image-02.svg')}
+                    src={require('./../../assets/images/featured-image-02.jpg')}
                     alt="Features split 02"
                     width={528}
                     height={396} />
@@ -117,7 +117,7 @@ class FeaturesSplit extends React.Component {
               <div className="split-item">
                 <div className="split-item-content center-content-mobile reveal-from-right" data-reveal-container=".split-item">
                   <h3 className="mt-0 mb-12">
-                    Data-driven insights
+                    Might give you diabetes
                   </h3>
                   <p className="m-0">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua — Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -130,7 +130,7 @@ class FeaturesSplit extends React.Component {
                   )}
                   data-reveal-container=".split-item">
                   <Image
-                    src={require('./../../assets/images/features-split-image-01.svg')}
+                    src={require('./../../assets/images/featured-image-03.jpg')}
                     alt="Features split 03"
                     width={528}
                     height={396} />

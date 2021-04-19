@@ -14,7 +14,6 @@ class Cart extends React.Component {
         <GenericSection topDivider className="center-content">
           <AmplifyAuthenticator>
               <PickupContent />
-            <GenericSection bottomDivider className="center-content" />
             <GenericSection topDivider className="center-content">
               <CartContent />
             </GenericSection>
