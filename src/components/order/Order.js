@@ -26,9 +26,9 @@ import AllergiesTitle from '../descriptions/AllergiesTitle';
 import AllergiesDescription from '../descriptions/AllergiesDescription';
 import Options from '../order/ToggleSwitch/Options';
 import OptionsShape from '../order/ToggleSwitch/OptionsShape';
+import ToIcon from '../icons/ToIcon';
 
 import 'react-notifications-component/dist/theme.css';
-//import './orderstyles.css'
 
 import GenericSection from '.././sections/GenericSection';
 
@@ -37,7 +37,7 @@ var review_ready = false;
 const Order = () => {
 
     useEffect(() => {
-        window.scrollTo(0, 0)
+        window.scrollTo(0, 0);
     }, []);
 
     const [shapeState, setShapeState] = useState(false);
@@ -61,19 +61,13 @@ const Order = () => {
     const history = useHistory();
 
     const FLAVORS = ['Strawberry', 'Blueberry', 'Mango', 'Pineapple', 'Black Forest', 'Butterscotch', 'Chocolate Ganache'];
-
+  
     const rand = Math.random().toString(16).substr(2, 8); // 6de5ccda
 
     const [productDetails, setProductDetails] = useState({ id: rand, flavor: "", shape: "", tier: "", eggless: false, fondant: false, topper: false, 
         characters: false, description: "", allergies: "", price: "0.00" });
 
     const { addToCart } = useContext(CartContext);
-
-    const breakPoints = [
-        { width: 1, itemsToShow: 1 },
-        { width: 300, itemsToShow: 2 },
-        { width: 900, itemsToShow: 3 },
-    ];
     
     const genericSectionHeader = {
         title: 'Review Selections'
@@ -81,24 +75,48 @@ const Order = () => {
 
     function PickFlavor(e) {
         //Set Product Details
-        setProductDetails({ ...productDetails, flavor: e.target.innerHTML });
-        CreateNotification("Saved Flavor", e.target.innerHTML);
+        if (e.target.className === "m-0") {
+            setProductDetails({ ...productDetails, flavor: e.target.innerHTML });
+            CreateNotification("Saved Flavor", e.target.innerHTML);
+        } else {
+            setProductDetails({ ...productDetails, flavor: e.target.alt });
+            CreateNotification("Saved Flavor", e.target.alt);
+        }
         setShapeState(true);
         return;
     }
 
+    
     function Flavor() {
         return (
                 <div className="flavor-form">
                     <h2 class="mt-0 mb-16">Flavor</h2>
                     <p class="m-0">Select from seven of our most popular flavors.</p>
                     <br></br>
-                    <Carousel breakPoints={breakPoints} fade="true" transition="5000">
-                    {FLAVORS.map((flavor) => {
-                        if (flavor === 'Chocolate Ganache') return <CarouselItem onClick={(e) => PickFlavor(e)} >{flavor}</CarouselItem>;
-                        if (flavor === 'Black Forest') return <CarouselItem onClick={(e) => PickFlavor(e)} >{flavor}</CarouselItem>;
-                        return <CarouselItem onClick={(e) => PickFlavor(e)} >{flavor}</CarouselItem>;
-                    })}
+                    <Carousel>
+                        {FLAVORS.map((flavor) => {
+
+                            const flavorImg = ToIcon(flavor);
+
+                            if (flavor === 'Chocolate Ganache') return(
+                                <CarouselItem onClick={(e) => PickFlavor(e)} >{flavorImg}
+                                    <p class="m-0" style={{fontSize:"80%"}}>{flavor}</p>
+                                </CarouselItem>
+                            );
+
+                            if (flavor === 'Black Forest') return (
+                                <CarouselItem onClick={(e) => PickFlavor(e)} >{flavorImg}
+                                    <p class="m-0" style={{fontSize:"80%"}}>{flavor}</p>
+                                </CarouselItem>
+                            );
+
+                            return (
+                                <CarouselItem onClick={(e) => PickFlavor(e)} >{flavorImg}
+                                    <p class="m-0" style={{fontSize:"80%"}}>{flavor}</p>
+                                </CarouselItem>
+                            );
+                            
+                        })}
                     </Carousel>
                 </div>
         );
