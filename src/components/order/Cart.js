@@ -28,13 +28,13 @@ const Cart = () => {
           <Table>
             <Thead>
               <Tr className="cart-tablerows">
-                <Th className="cart-theader">Flavor</Th>
-                <Th className="cart-theader">Shape</Th>
-                <Th className="cart-theader">Tier</Th>
-                <Th className="cart-theader">Extras</Th>
-                <Th className="cart-theader">Notes</Th>
-                <Th className="cart-theader">Price</Th>  
-                <Th className="cart-theader">Quantity</Th>             
+                <Th className="cart-theader" style={{textAlign: "center"}}>Flavor</Th>
+                <Th className="cart-theader" style={{textAlign: "center"}}>Shape</Th>
+                <Th className="cart-theader" style={{textAlign: "center"}}>Tier</Th>
+                <Th className="cart-theader" style={{textAlign: "center"}}>Extras</Th>
+                <Th className="cart-theader" style={{textAlign: "center"}}>Notes</Th>
+                <Th className="cart-theader" style={{textAlign: "center"}}>Price</Th>  
+                <Th className="cart-theader" style={{textAlign: "center"}}>Quantity</Th>             
               </Tr>
             </Thead>
             <Tbody>
