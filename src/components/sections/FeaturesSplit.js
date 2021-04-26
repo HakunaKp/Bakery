@@ -71,10 +71,9 @@ class FeaturesSplit extends React.Component {
               <div className="split-item">
                 <div className="split-item-content center-content-mobile reveal-from-right" data-reveal-container=".split-item">
                   <h3 className="mt-0 mb-12">
-                    Careful attention to fine details
+                    Careful attention to fine details.
                   </h3>
                   <p className="m-0">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua — Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                   </p>
                 </div>
                 <div className={
@@ -94,10 +93,9 @@ class FeaturesSplit extends React.Component {
               <div className="split-item">
                 <div className="split-item-content center-content-mobile reveal-from-left" data-reveal-container=".split-item">
                   <h3 className="mt-0 mb-12">
-                    Perfect for any occasion
+                    Perfect for any occasion.
                   </h3>
                   <p className="m-0">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua — Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                   </p>
                 </div>
                 <div className={
@@ -117,10 +115,9 @@ class FeaturesSplit extends React.Component {
               <div className="split-item">
                 <div className="split-item-content center-content-mobile reveal-from-right" data-reveal-container=".split-item">
                   <h3 className="mt-0 mb-12">
-                    Might give you diabetes
+                    Might give you diabetes.
                   </h3>
                   <p className="m-0">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua — Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                   </p>
                 </div>
                 <div className={

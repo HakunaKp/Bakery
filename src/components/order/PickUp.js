@@ -8,6 +8,7 @@ import {
   KeyboardTimePicker
 } from '@material-ui/pickers';
 
+import './styles.css';
 //import checkAvailability from '../pickup/CheckAvailability';
 
 const PickUp = () => {
@@ -33,24 +34,24 @@ const PickUp = () => {
               <p class="m-0">Some dates may be unavailable.</p>
               <p class="m-0">Calendar updated Sunday at 2PM EST.</p>
 
-              <br></br>
-
               <KeyboardDatePicker
                 label="Date Selection"
                 format="MM/dd/yyyy"
                 id="date-picker"
-                style={{width:"100%"}} 
+                style={{width:"90%"}} 
                 onChange={handleDateChange}
                 value={selectedDate}
                 //shouldDisableDate={checkAvailability(date)}
               />
             </div>
             
+            <br></br>
+
             <div className="pickUp-selections">
               <KeyboardTimePicker
               id="time-picker"
               label="Time Selection"
-              style={{width:"100%"}}
+              style={{width:"90%"}}
               value={selectedTime}
               onChange={handleTimeChange}
               />

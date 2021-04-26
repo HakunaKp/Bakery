@@ -14,12 +14,12 @@ import generateInvoiceTable from './GenerateInvoice';
 const CARD_ELEMENT_OPTIONS = {
   style: {
     base: {
-      color: "#32325d",
+      color: "#959CB1",
       fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
       fontSmoothing: "antialiased",
       fontSize: "16px",
       "::placeholder": {
-        color: "#aab7c4"
+        color: "#959CB1"
       }
     },
     invalid: {

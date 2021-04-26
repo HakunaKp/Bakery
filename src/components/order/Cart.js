@@ -18,7 +18,12 @@ const Cart = () => {
   const { cart, total, increaseAmount, decreaseAmount } = useContext(CartContext);
 
   if (!cart.length) {
-    return <h2 class="mt-0 mb-16">Empty Cart</h2>
+    return (
+      <div>
+        <h2 class="mt-0 mb-16">Empty Cart</h2>
+        <Link to="/order/" className="button button-primary button-wide-mobile button-sm">Add Item</Link>
+      </div>
+    );
   }
 
   return (
