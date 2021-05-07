@@ -2,8 +2,4 @@
 
 https://www.monicaspastrycakes.com/
 
-Blog posts about this website:
-
-- [Overview](https://hakunakp.wixsite.com/til-blog/post/building-my-first-react-js-web-app-part-1)
-- [AWS Amplify Back End](https://hakunakp.wixsite.com/til-blog/post/building-my-first-react-js-web-app-back-end)
-- [Design UI/UIX](https://hakunakp.wixsite.com/til-blog/post/small-business-app-front-end-react-components)
+Collection of blog posts about this website: https://kunal-patil.ghost.io/tag/small-business-app/
