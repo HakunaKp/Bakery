@@ -4,7 +4,9 @@ import { createProduct } from '../../api/mutations';
 import { CartContext } from '../../context/cart';
 import { useHistory } from "react-router-dom";
 import { Tooltip } from '@varld/popover';
-
+import { Link } from 'react-scroll';
+import AutoScroll from '../order/AutoScroll';
+import GenericSection from '.././sections/GenericSection';
 import SectionHeader from '../sections/partials/SectionHeader';
 import Button from '../elements/Button';
 import ReactNotifications from 'react-notifications-component';
@@ -13,7 +15,6 @@ import Carousel from '../elements/Carousel';
 import CarouselItem from '../elements/CarouselItem';
 import Accordion from '../elements/Accordion';
 import AccordionItem from '../elements/AccordionItem';
-
 import FlavorDescription from '../descriptions/FlavorDescription';
 import ShapeDescription from '../descriptions/ShapeDescription';
 import TierTitle from '../descriptions/TierTitle';
@@ -27,10 +28,7 @@ import AllergiesDescription from '../descriptions/AllergiesDescription';
 import Options from '../order/ToggleSwitch/Options';
 import OptionsShape from '../order/ToggleSwitch/OptionsShape';
 import ToIcon from '../icons/ToIcon';
-
 import 'react-notifications-component/dist/theme.css';
-
-import GenericSection from '.././sections/GenericSection';
 
 var review_ready = false;
 
@@ -39,15 +37,6 @@ const Order = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
-
-    const [shapeState, setShapeState] = useState(false);
-    const shapeRef = React.useRef();
-    useEffect(() => {
-        if (shapeState && shapeRef.current) {
-        //  shapeRef.current.scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
-          setShapeState(false);
-        }
-    }, [shapeState]);
     
     const [reviewState, setReviewState] = useState(false);
     const reviewRef = React.useRef();
@@ -74,6 +63,9 @@ const Order = () => {
     }
 
     function PickFlavor(e) {
+
+        document.getElementById("flavor-selected").style.color = "white";
+
         //Set Product Details
         if (e.target.className === "m-0") {
             setProductDetails({ ...productDetails, flavor: e.target.innerHTML });
@@ -82,14 +74,13 @@ const Order = () => {
             setProductDetails({ ...productDetails, flavor: e.target.alt });
             CreateNotification("Saved Flavor", e.target.alt);
         }
-        setShapeState(true);
         return;
     }
 
     
     function Flavor() {
         return (
-                <div className="flavor-form">
+                <div id="flavor" className="flavor-form">
                     <h2 class="mt-0 mb-16">Flavor</h2>
                     <p class="m-0">Select from seven of our most popular flavors.</p>
                     <br></br>
@@ -98,24 +89,15 @@ const Order = () => {
 
                             const flavorImg = ToIcon(flavor);
 
-                            if (flavor === 'Chocolate Ganache') return(
-                                <CarouselItem onClick={(e) => PickFlavor(e)} >{flavorImg}
-                                    <p class="m-0" style={{fontSize:"80%"}}>{flavor}</p>
+                            return(
+                                <CarouselItem >
+                                    <Link to="shape" onClick={(e) => PickFlavor(e)} spy={true} smooth={true}>{flavorImg}</Link>
+                                    <Link to="shape" spy={true} smooth={true}>
+                                        <p class="m-0" onClick={(e) => PickFlavor(e)} style={{fontSize:"80%"}}>{flavor}</p>
+                                    </Link>
                                 </CarouselItem>
                             );
 
-                            if (flavor === 'Black Forest') return (
-                                <CarouselItem onClick={(e) => PickFlavor(e)} >{flavorImg}
-                                    <p class="m-0" style={{fontSize:"80%"}}>{flavor}</p>
-                                </CarouselItem>
-                            );
-
-                            return (
-                                <CarouselItem onClick={(e) => PickFlavor(e)} >{flavorImg}
-                                    <p class="m-0" style={{fontSize:"80%"}}>{flavor}</p>
-                                </CarouselItem>
-                            );
-                            
                         })}
                     </Carousel>
                 </div>
@@ -124,8 +106,8 @@ const Order = () => {
 
     function Shape() {
         return (
-            <GenericSection topDivider className="center-content">
-                <div className="shape-form" id="pick-shape" ref={shapeRef}>
+            <GenericSection topDivider id="shape" className="center-content">
+                <div className="shape-form">
                     <h2 class="mt-0 mb-16">Shape</h2>
                     <p class="m-0">Select from circle, square or rectangle, and heart options.</p>
                     <br></br>
@@ -159,14 +141,13 @@ const Order = () => {
             }
 
             if (!tierSelected && !productDetails.tier) return CreateNotification("Error", "Tier is required!");
-
             extrasReady = false;
         }
     }
 
     function Description() {
         return (
-            <GenericSection topDivider className="center-content">
+            <GenericSection topDivider id="description" className="center-content">
                 <div className="description-form">
                     <h2 class="mt-0 mb-16">Description</h2>
                     <p class="m-0">Themes, color choices, written messages, extra details, etc.</p>
@@ -177,6 +158,7 @@ const Order = () => {
                         placeholder="Optional field."
                         name="description"
                         id="description-box"
+                        onChange={() => document.getElementById("description-selected").style.color = "white"}
                     />
                 </div>
             </GenericSection>
@@ -186,7 +168,7 @@ const Order = () => {
     function Allergies() {
         return (
             <div>
-                <GenericSection topDivider className="center-content">
+                <GenericSection topDivider id="allergies" className="center-content">
                     <div className="allergies-form">
                         <h2 class="mt-0 mb-16">Allergies</h2>
                         <p class="m-0">Please list any allergies or dietary restrictions.</p>
@@ -197,14 +179,15 @@ const Order = () => {
                             placeholder="Optional field."
                             name="allergies"
                             id="allergies-box"
+                            onChange={() => document.getElementById("allergies-selected").style.color = "white"}
                         />
                     </div>
                 </GenericSection >
-                <GenericSection topDivider className="center-content" />
 
-                <Button tag="a" color="secondary" onClick={SaveChoices} wideMobile>
-                    Review Selections
-                </Button>
+                <GenericSection topDivider className="center-content" />
+                    <Button tag="a" color="secondary" onClick={SaveChoices} wideMobile>
+                        Review Selections
+                    </Button>
                 <GenericSection bottomDivider className="center-content" />
             </div>
         );
@@ -272,7 +255,7 @@ const Order = () => {
     function Optional(){
         SaveShape();
         return (
-            <GenericSection topDivider className="center-content" id="pick-extras">
+            <GenericSection topDivider className="center-content" id="extras">
                 <div className="optional-form">
                     <h2 class="mt-0 mb-16">Extras</h2>
                     <p class="m-0" style={{textAlign: "center"}}>
@@ -308,6 +291,7 @@ const Order = () => {
     return (
         <form className="form-wrapper" onSubmit={handleSubmit}>
             <ReactNotifications />
+            <AutoScroll />
             <Flavor/>
             <Shape />
             <Optional />

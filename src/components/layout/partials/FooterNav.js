@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 
 const FooterNav = ({
   className,
@@ -17,6 +17,7 @@ const FooterNav = ({
       {...props}
       className={classes}
     >
+      {/*
       <ul className="list-reset">
         <li>
           <Link to="/contact/">Contact</Link>
@@ -31,6 +32,7 @@ const FooterNav = ({
           <Link to="/support/">Support</Link>
         </li>
       </ul>
+      */}
     </nav>
   );
 }

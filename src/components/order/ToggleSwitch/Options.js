@@ -22,24 +22,28 @@ class Options extends Component {
             case 'eggless':
                 if (enabled) {
                     CreateNotification("Added Customization", "Eggless");
+                    document.getElementById("extras-selected").style.color = "white";
                 }
                 break;
 
             case 'fondant':
                 if (enabled) {
                     CreateNotification("Added Customization", "Fondant");
+                    document.getElementById("extras-selected").style.color = "white";
                 }
                 break;
 
             case 'topper':
                 if (enabled) {
                     CreateNotification("Added Customization", "Topper");
+                    document.getElementById("extras-selected").style.color = "white";
                 }
                 break;
 
             case 'characters':
                 if (enabled) {
                     CreateNotification("Added Customization", "Characters");
+                    document.getElementById("extras-selected").style.color = "white";
                 }
                 break;
             default:

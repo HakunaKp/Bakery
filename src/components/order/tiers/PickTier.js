@@ -15,5 +15,7 @@ export default function PickTier(e) {
     // Saved Tier Notification
     CreateNotification("Saved Tier", printTier(e.target.id));
 
-  //  document.getElementById("pick-extras").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
-}
+    // Indicate that tier is selected
+    document.getElementById("tier-selected").style.color = "white";
+
+  }

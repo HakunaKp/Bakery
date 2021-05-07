@@ -1,6 +1,5 @@
 import { store } from 'react-notifications-component';
 import 'animate.css';
-import './notification.css';
 
 // Function to Create notification
 export default function CreateNotification(title_string, message_string) {
@@ -8,7 +7,7 @@ export default function CreateNotification(title_string, message_string) {
         title: title_string,
         message: message_string,
         type: "default",                         // 'default', 'success', 'info', 'warning'
-        container: "top-full",                // where to position the notifications
+        container: "top-left",                // where to position the notifications
         insert: "top",
         animationIn: ["animated", "fadeIn"],     // animate.css classes that's applied
         animationOut: ["animated", "fadeOut"],   // animate.css classes that's applied

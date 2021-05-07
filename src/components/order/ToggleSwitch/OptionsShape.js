@@ -7,6 +7,7 @@ import RectangleTierTable from '../tiers/RectangleTierTable';
 import HeartTierTable from '../tiers/HeartTierTable';
 import CreateNotification from '../../notifications/Notification';
 import GenericSection from '../../sections/GenericSection';
+import { Link } from 'react-scroll';
 
 // List of optionals that can be toggled
 const ACTIVITIES = [
@@ -29,7 +30,7 @@ class OptionsShape extends Component {
                 if (enabled) {
                     CreateNotification("Added Shape", "Cake is now circular");
                     chosenShape = "Circle";
-                //    document.getElementById("tierRef").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+                    document.getElementById("shape-selected").style.color = "white";
                 }
                 break;
 
@@ -37,7 +38,7 @@ class OptionsShape extends Component {
                 if (enabled) {
                     CreateNotification("Added Shape", "Cake is now rectangular");
                     chosenShape = "Rectangle";
-                //    document.getElementById("tierRef").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+                    document.getElementById("shape-selected").style.color = "white";
                 }
                 break;
 
@@ -45,7 +46,7 @@ class OptionsShape extends Component {
                 if (enabled) {
                     CreateNotification("Added Shape", "Cake is now heart-shaped");
                     chosenShape = "Heart";
-                //    document.getElementById("tierRef").scrollIntoView({behavior: "smooth", block: "start", inline: "nearest"});
+                    document.getElementById("shape-selected").style.color = "white";
                 }
                 break;
 
@@ -77,14 +78,16 @@ class OptionsShape extends Component {
     
             return (
                 <div key={index} className="col-5 d-flex mb-3">
-                    <Switch
-                        enabled={enabled}
-                        theme="default"
-                        className="d-flex"
-                        id={activity}
-                        onStateChanged={ this.toggleActivityEnabled(key) }
-                    />
-                    <span id={"span-"+key} className={activityClasses}>{ activity }</span>
+                    <Link to="tier" spy={true} smooth={true}>
+                        <Switch
+                            enabled={enabled}
+                            theme="default"
+                            className="d-flex"
+                            id={activity}
+                            onStateChanged={ this.toggleActivityEnabled(key) }
+                        />
+                        <span id={"span-"+key} className={activityClasses}>{ activity }</span>
+                    </Link >
                 </div>
             );
         })
@@ -117,7 +120,7 @@ class OptionsShape extends Component {
                         { this.renderNotifiableActivities() }
                     </div>
                 ) }
-                <GenericSection topDivider className="center-content" id="tierRef" >
+                <GenericSection topDivider  id="tier" className="center-content" >
                     {renderTierTable()}
                 </GenericSection >
             </div>
