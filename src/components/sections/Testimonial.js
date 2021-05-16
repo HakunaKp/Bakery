@@ -49,7 +49,7 @@ class Testimonial extends React.Component {
 
     const sectionHeader = {
       title: 'Don\'t take our word for it',
-      paragraph: 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint — occaecat cupidatat non proident, sunt in culpa qui.'
+      paragraph: 'Hear what others have to say.'
     };
 
     return (
@@ -66,15 +66,14 @@ class Testimonial extends React.Component {
                 <div className="tiles-item-inner">
                   <div className="testimonial-item-content">
                     <p className="text-sm mb-0">
-                      — Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum cillum dolore eu fugiat.
+                        Dear Monica,<br />
+                        A big thank you to you for the exquisite Birthday cake you created. The cake was so beautiful and tasted heavenly.
+                        It was evident that you spent substantial time and effort to ensure that our cakes turned out so perfectly. Your efforts were very much appreciated and will not soon be forgotten.
+                        Thank you once again for making our day so special !!<br />
                       </p>
                   </div>
                   <div className="testimonial-item-footer text-xs mt-32 mb-0 has-top-divider">
-                    <span className="testimonial-item-name text-color-high">Roman Level</span>
-                    <span className="text-color-low"> / </span>
-                    <span className="testimonial-item-link">
-                      <a href="#0">AppName</a>
-                    </span>
+                    <span className="testimonial-item-name text-color-high">— Lavanya</span>
                   </div>
                 </div>
               </div>
@@ -83,32 +82,13 @@ class Testimonial extends React.Component {
                 <div className="tiles-item-inner">
                   <div className="testimonial-item-content">
                     <p className="text-sm mb-0">
-                      — Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum cillum dolore eu fugiat.
-                      </p>
+                      Hey Monica!<br/>
+                      It’s been since 6 years enjoying your cakes! They are so amazingly light and delicious 😋 From refreshing fresh fruits to auromatic rose petals, each flavour and design makes our occasion more happening.
+                      And a crazy cupcake lover 🥰🥰 (my son) who can eat them anytime. Thank you for always remembering us to make eggless.😊<br/>
+                    </p>
                   </div>
                   <div className="testimonial-item-footer text-xs mt-32 mb-0 has-top-divider">
-                    <span className="testimonial-item-name text-color-high">Diana Rynzhuk</span>
-                    <span className="text-color-low"> / </span>
-                    <span className="testimonial-item-link">
-                      <a href="#0">AppName</a>
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="tiles-item reveal-from-left" data-reveal-delay="200">
-                <div className="tiles-item-inner">
-                  <div className="testimonial-item-content">
-                    <p className="text-sm mb-0">
-                      — Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum cillum dolore eu fugiat.
-                      </p>
-                  </div>
-                  <div className="testimonial-item-footer text-xs mt-32 mb-0 has-top-divider">
-                    <span className="testimonial-item-name text-color-high">Ben Stafford</span>
-                    <span className="text-color-low"> / </span>
-                    <span className="testimonial-item-link">
-                      <a href="#0">AppName</a>
-                    </span>
+                    <span className="testimonial-item-name text-color-high">— Pratibha</span>
                   </div>
                 </div>
               </div>

@@ -49,7 +49,7 @@ class FeaturesTiles extends React.Component {
     );
 
     const sectionHeader = {
-      title: "Options on Options",
+      title: "Options on options",
       paragraph: "Variety of options to customize your cake."
     };
 

@@ -3,7 +3,7 @@ import SectionHeader from '../components/sections/partials/SectionHeader';
 import HeroSplit from '../components/sections/HeroSplit';
 import GenericSection from '../components/sections/GenericSection';
 import FeaturesTiles from '../components/sections/FeaturesTiles';
-//import Testimonial from '../components/sections/Testimonial';
+import Testimonial from '../components/sections/Testimonial';
 import Image from '../components/elements/Image';
 import Modal from '../components/elements/Modal';
 
@@ -56,7 +56,7 @@ class Home extends React.Component {
             videoTag="iframe" />
         </GenericSection>         
         <FeaturesTiles topDivider className="center-content" />
-        {/*<Testimonial topDivider />*/}
+        <Testimonial topDivider />
       </React.Fragment>
     );
   }
