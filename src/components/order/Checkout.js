@@ -9,8 +9,7 @@ const Checkout = () => {
     return (
         <Elements stripe={stripePromise}>
             <h2 class="mt-0 mb-16">Checkout</h2>
-            <p class="m-0">Be sure to save your order invoice. </p>
-            <p class="m-0">It will be downloaded after successful processing of your payment.</p>
+            <p class="m-0">Your order will be confirmed upon successful processing of your payment.</p>
             <br></br>
             <br></br>
             <CheckoutForm />

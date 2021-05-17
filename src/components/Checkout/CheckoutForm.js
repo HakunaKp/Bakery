@@ -95,13 +95,14 @@ const CheckoutForm = () => {
       // Send the token to your server.
       const token = result.token;
       setOrderDetails({ ...orderDetails, username: customer_username, email: customer_email, pickupDate: date, pickupTime: time, token: token.id });
-      doc.save('Order Invoice - Customer Copy.pdf')
+      var base64 = doc.output('datauristring');
       emailjs.init("user_HZRLM4jHPO8XyqGT96zFF");
       emailjs.send("service_cn2ng8a","template_upcguss",{
         receipient_email: customer_email,
         pickupDate: date,
         pickupTime: time,
-        total: orderDetails.total
+        total: orderDetails.total,
+        invoice: base64
       });
       history.push('/success');
     }
